@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>toflaks98229 — Unity 게임 프로그래머 포트폴리오</title>
+<meta name="description" content="시스템 설계와 시뮬레이션 중심의 Unity 게임 프로젝트 모음.">
+<style>
+  :root{
+    --bg:#faf9f7; --surface:#fff; --line:#e3e0da; --ink:#1a1917; --muted:#6b675f;
+    --accent:#b4451f; --accent-soft:#fdf0e9; --code-bg:#f1eee9;
+    --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,monospace;
+    --sans:system-ui,-apple-system,"Segoe UI","Pretendard","Malgun Gothic",sans-serif;
+  }
+  @media (prefers-color-scheme:dark){
+    :root{
+      --bg:#131211; --surface:#1c1a18; --line:#302d29; --ink:#eae7e1; --muted:#98938a;
+      --accent:#f0794a; --accent-soft:#2a1d16; --code-bg:#242119;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#131211; --surface:#1c1a18; --line:#302d29; --ink:#eae7e1; --muted:#98938a;
+    --accent:#f0794a; --accent-soft:#2a1d16; --code-bg:#242119;
+  }
+  :root[data-theme="light"]{
+    --bg:#faf9f7; --surface:#fff; --line:#e3e0da; --ink:#1a1917; --muted:#6b675f;
+    --accent:#b4451f; --accent-soft:#fdf0e9; --code-bg:#f1eee9;
+  }
+
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);
+       line-height:1.7;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+  .wrap{max-width:920px;margin:0 auto;padding:0 24px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* ── 헤더 ── */
+  header{padding:88px 0 56px;border-bottom:1px solid var(--line)}
+  .eyebrow{font-family:var(--mono);font-size:13px;letter-spacing:.08em;
+           text-transform:uppercase;color:var(--accent);margin:0 0 14px}
+  h1{margin:0 0 20px;font-size:clamp(30px,5.2vw,46px);line-height:1.2;letter-spacing:-.02em}
+  .lede{margin:0;font-size:clamp(16px,2.1vw,19px);color:var(--muted);max-width:62ch}
+  .lede strong{color:var(--ink);font-weight:600}
+  .links{margin-top:28px;display:flex;gap:10px;flex-wrap:wrap}
+  .btn{display:inline-block;padding:9px 16px;border:1px solid var(--line);border-radius:7px;
+       background:var(--surface);color:var(--ink);font-size:14px;font-weight:500}
+  .btn:hover{border-color:var(--accent);color:var(--accent);text-decoration:none}
+  .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn.primary:hover{opacity:.88;color:#fff}
+
+  /* ── 섹션 ── */
+  section{padding:64px 0;border-bottom:1px solid var(--line)}
+  h2{margin:0 0 8px;font-size:13px;font-family:var(--mono);letter-spacing:.08em;
+     text-transform:uppercase;color:var(--muted);font-weight:600}
+  .section-lede{margin:0 0 36px;color:var(--muted);max-width:60ch}
+
+  /* ── 프로젝트 카드 ── */
+  .project{background:var(--surface);border:1px solid var(--line);border-radius:12px;
+           overflow:hidden;margin-bottom:28px}
+  .shot{aspect-ratio:16/9;background:var(--code-bg);border-bottom:1px solid var(--line);
+        display:flex;align-items:center;justify-content:center;position:relative}
+  .shot img{width:100%;height:100%;object-fit:cover;display:block}
+  .shot .placeholder{text-align:center;color:var(--muted);font-family:var(--mono);
+                     font-size:12px;padding:20px;line-height:1.9}
+  .shot .placeholder b{display:block;font-size:26px;margin-bottom:6px;opacity:.35}
+  .body{padding:26px 28px 28px}
+  .title-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+  .project h3{margin:0;font-size:22px;letter-spacing:-.01em}
+  .genre{font-size:13px;color:var(--muted)}
+  .badge{font-family:var(--mono);font-size:11px;padding:2px 8px;border-radius:4px;
+         background:var(--accent-soft);color:var(--accent);border:1px solid var(--line)}
+  .summary{margin:10px 0 18px;color:var(--muted)}
+
+  .highlight{background:var(--accent-soft);border-left:3px solid var(--accent);
+             border-radius:0 7px 7px 0;padding:14px 16px;margin:0 0 18px}
+  .highlight .label{font-family:var(--mono);font-size:11px;letter-spacing:.06em;
+                    text-transform:uppercase;color:var(--accent);display:block;margin-bottom:5px}
+  .highlight p{margin:0;font-size:15px}
+
+  ul.points{margin:0 0 18px;padding-left:20px}
+  ul.points li{margin-bottom:6px}
+  ul.points code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);
+                 padding:1px 5px;border-radius:4px}
+
+  .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
+  .tag{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:4px;
+       background:var(--code-bg);color:var(--muted)}
+
+  /* ── 스택 ── */
+  .stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
+  .stack h4{margin:0 0 10px;font-size:14px}
+  .stack .tags{margin:0}
+
+  /* ── 기타 프로젝트 ── */
+  .misc{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:14px}
+  .misc a{display:block;padding:16px 18px;border:1px solid var(--line);border-radius:9px;
+          background:var(--surface);color:var(--ink)}
+  .misc a:hover{border-color:var(--accent);text-decoration:none}
+  .misc b{display:block;margin-bottom:3px}
+  .misc span{font-size:13px;color:var(--muted)}
+
+  footer{padding:44px 0 64px;color:var(--muted);font-size:14px}
+
+  /* ── 테마 토글 ── */
+  #theme{position:fixed;top:18px;right:18px;width:38px;height:38px;border-radius:50%;
+         border:1px solid var(--line);background:var(--surface);color:var(--ink);
+         cursor:pointer;font-size:15px;line-height:1;z-index:10}
+  #theme:hover{border-color:var(--accent)}
+</style>
+</head>
+<body>
+
+<button id="theme" aria-label="라이트/다크 테마 전환">◐</button>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Unity Game Programmer</p>
+    <h1>장르를 흉내 내지 않고,<br>그 장르를 성립시키는 시스템을 만듭니다.</h1>
+    <p class="lede">
+      전장의 대형 배치를 <strong>헝가리안 알고리즘</strong>으로 풀고, 로그라이크 타일에 <strong>열전도를 시뮬레이션</strong>하고,
+      청소 게임의 얼룩을 <strong>UV 공간 RenderTexture 마스크</strong>로 관리합니다.
+      게임의 겉모습보다 그것을 돌아가게 하는 구조에 관심이 많습니다.
+    </p>
+    <div class="links">
+      <a class="btn primary" href="https://github.com/toflaks98229">GitHub</a>
+      <a class="btn" href="#projects">프로젝트 보기</a>
+    </div>
+  </div>
+</header>
+
+<section id="projects">
+  <div class="wrap">
+    <h2>Selected Work</h2>
+    <p class="section-lede">
+      각 프로젝트에서 <b>가장 어려웠던 문제 하나</b>와 그것을 어떻게 풀었는지를 중심으로 정리했습니다.
+      모든 프로젝트는 소스가 공개돼 있습니다.
+    </p>
+
+    <!-- RTXX -->
+    <article class="project">
+      <div class="shot">
+        <!-- 스크린샷 교체: <img src="assets/rtxx.png" alt="RTXX 전투 화면"> -->
+        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/rtxx.png</div>
+      </div>
+      <div class="body">
+        <div class="title-row">
+          <h3>RTXX</h3>
+          <span class="genre">실시간 전략 · Total War 계열</span>
+        </div>
+        <p class="summary">
+          개별 유닛에게 명령하는 게 아니라, 우클릭으로 <b>선을 그어 부대의 정면과 폭</b>을 지정하면
+          병사들이 알아서 대형을 갖추는 군단 단위 RTS입니다. 2D 픽셀 스프라이트 병사들이 3D 지형 위에서 싸웁니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            "부대원 200명을 대형 슬롯 200개에 어떻게 배치할 것인가?" 가까운 슬롯부터 그리디하게 배정하면
+            병사들의 이동 경로가 서로 교차하면서 대형이 엉킵니다. 이 문제를 <b>이분 그래프 최적 할당</b>으로 보고,
+            <b>헝가리안 알고리즘</b>을 직접 구현해 <b>총 이동거리가 최소가 되는 배치</b>를 계산했습니다.
+            같은 알고리즘을 부대 ↔ 진형 선분 배정에도 재사용합니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>DOTS 병렬화</b> — 부대/유닛/전투/애니메이션/스탯/대형 갱신을 전부 <code>[BurstCompile] IJobParallelFor</code>로 처리하고, 지형 접지 판정은 <code>RaycastCommand</code>로 배치 처리합니다.</li>
+          <li><b>중앙 집중 업데이트 루프</b> — 모든 MonoBehaviour가 스스로를 비활성화하고, <code>Controller</code>가 <code>_Update()</code>를 직접 호출합니다. Unity의 <code>Update()</code> 호출 오버헤드를 없애기 위한 선택입니다.</li>
+          <li><b>각도 기반 전투</b> — 정면 피격은 방어력·방패가 100% 적용되지만 측후면은 50%만 적용됩니다. 대형의 측면을 파고드는 것이 전술적으로 의미를 갖습니다.</li>
+          <li>3초간 교전이 없으면 <b>자동 재정렬</b>이 걸려 무너진 대형을 복구합니다.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">Unity 2022.3</span><span class="tag">URP</span>
+          <span class="tag">DOTS / Burst</span><span class="tag">Job System</span>
+          <span class="tag">헝가리안 알고리즘</span>
+        </div>
+        <a class="btn" href="https://github.com/toflaks98229/RTXX">소스 보기 →</a>
+      </div>
+    </article>
+
+    <!-- ASCIIROG -->
+    <article class="project">
+      <div class="shot">
+        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/asciirog.png</div>
+      </div>
+      <div class="body">
+        <div class="title-row">
+          <h3>ASCIIROG</h3>
+          <span class="genre">ASCII 로그라이크</span>
+        </div>
+        <p class="summary">
+          <code>@</code>, <code>#</code>, <code>.</code> 문자로 그려지는 턴제 로그라이크.
+          겉보기는 고전 로그라이크지만, 안쪽에는 <b>물리·열역학 시뮬레이션 레이어</b>가 돌아갑니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            "불을 지르면 무슨 일이 벌어져야 하는가?" 스크립트로 정해둔 연출을 재생하는 대신,
+            <b>모든 타일에 물질·상태·온도를 부여</b>했습니다. 그러자 규칙들이 상호작용하면서
+            <b>창발적 상황</b>이 나옵니다 — 불이 가연성 타일을 타고 번지고, 기름에 옮겨붙으면 폭발하고,
+            물은 얼거나 끓어 증기가 되고, 번개는 <b>BFS로 전도성·젖은 타일을 따라 전파</b>됩니다.
+            제가 설계하지 않은 콤보를 플레이어가 발견할 수 있습니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>Strategy 패턴 맵 생성</b> — BSP 던전 / 셀룰러 오토마타 동굴 / 펄린 노이즈 지형을 같은 인터페이스로 교체합니다.</li>
+          <li><b>타일별 조명</b> — 거리 감쇠 + 브레젠험 직선으로 벽 차폐를 계산해 문자 단위로 밝기를 입힙니다.</li>
+          <li><b>성능</b> — 5000 슬롯 파티클 풀, 적 탐색용 <code>SpatialHashGrid</code>, Pub-Sub <code>EventManager</code>.</li>
+          <li><b>데이터 드리븐</b> — 바이옴·물질·파티클을 CSV로 정의하고 에디터 임포터가 ScriptableObject로 변환합니다.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">Unity 2022.3</span><span class="tag">TextMeshPro</span>
+          <span class="tag">Strategy 패턴</span><span class="tag">BFS 전파</span>
+          <span class="tag">셀룰러 오토마타</span>
+        </div>
+        <a class="btn" href="https://github.com/toflaks98229/ASCIIROG">소스 보기 →</a>
+      </div>
+    </article>
+
+    <!-- MX4 -->
+    <article class="project">
+      <div class="shot">
+        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/mx4.png</div>
+      </div>
+      <div class="body">
+        <div class="title-row">
+          <h3>MX4</h3>
+          <span class="genre">청소 시뮬레이터</span>
+          <span class="badge">하드웨어 연동</span>
+        </div>
+        <p class="summary">
+          마우스를 드래그해 3D 오브젝트 표면의 얼룩을 물로 문질러 닦아내는 게임.
+          Logitech <b>Action Ring</b>으로 도구를 바꾸고, <b>MX Master 4 햅틱</b>으로 손끝에 피드백이 옵니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            "얼룩이 얼마나 지워졌는지를 어떻게 매 프레임 알아낼 것인가?" 얼룩을 텍스처가 아니라
+            <b>UV 공간의 RenderTexture 마스크</b>로 두고 HLSL 브러시 셰이더가 직접 그려 넣게 했습니다.
+            진행도는 마스크를 CPU로 읽어오는 대신 <b>밉맵을 생성해 최하위 1×1 밉이 곧 전체 평균이 되는 성질</b>을 이용했습니다.
+            데스크톱에서는 <code>AsyncGPUReadback</code>으로 비동기 처리하고, 이를 지원하지 않는 WebGL에서는
+            셰이더로 1×1까지 blit한 뒤 동기 리드백하는 폴백 경로를 따로 뒀습니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>노즐 반경에서 수압을 파생</b> — 수압을 따로 조절하는 게 아니라 <code>pressure = (기준반경 / 노즐반경)^감쇠</code>로 계산됩니다. 좁은 노즐일수록 강하지만 좁게, 넓은 노즐은 약하지만 넓게 — <b>"넓게 대충 vs 좁게 집중"의 트레이드오프</b>가 물리적으로 성립합니다.</li>
+          <li><b>끊기지 않는 스트로크</b> — 프레임 사이 마우스 이동 거리를 보간해 스탬프를 여러 번 찍습니다.</li>
+          <li><b>게임 ↔ 플러그인 연동</b> — 게임이 loopback TCP 서버(52111)를 열어 상태·이벤트를 밀어주고, 별도 .NET 8 Loupedeck 플러그인이 이를 받아 링 디스플레이와 햅틱을 구동합니다.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">Unity 6</span><span class="tag">HLSL</span>
+          <span class="tag">RenderTexture</span><span class="tag">AsyncGPUReadback</span>
+          <span class="tag">WebGL</span><span class="tag">.NET 8</span>
+        </div>
+        <a class="btn" href="https://github.com/toflaks98229/MX4">소스 보기 →</a>
+      </div>
+    </article>
+
+    <!-- Sandland -->
+    <article class="project">
+      <div class="shot">
+        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/sandland.png</div>
+      </div>
+      <div class="body">
+        <div class="title-row">
+          <h3>Sandland</h3>
+          <span class="genre">드론 지휘</span>
+        </div>
+        <p class="summary">
+          1인칭으로 관제실을 돌아다니다 CRT 모니터 앞에 서면 제어 모드로 들어가고,
+          <b>모니터 화면 너머로</b> 정찰 드론 편대를 지휘합니다. 화면은 RenderTexture에 픽셀화·CRT 셰이더를 입혀 그립니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            드론 편대가 대형(Line / Circle / V / Diamond)을 유지하며 NavMesh 위를 날아야 했습니다.
+            여기서도 <b>어떤 드론이 어떤 대형 슬롯으로 갈지</b>가 문제였고, RTXX와 마찬가지로
+            <b>헝가리안 알고리즘</b>으로 최적 배정을 풀었습니다. 역할별로 카메라·수송·공격·호위·방어 드론이
+            각자의 상태 머신(약 1,400줄)을 따라 움직입니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>구체 스캔 시스템</b> — 스캔 범위가 구체로 퍼져나가며 아이템과 적을 태깅합니다.</li>
+          <li><b>무기 / 투사체</b> — 머신건·미사일·레이저, 탄도 및 유도 투사체, 오브젝트 풀링.</li>
+          <li><b>관제 UI</b> — 레이더, 고도계, 나침반, 드론 상태, 아이템 관리 패널을 모니터 안에 구현.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">Unity 2022.3</span><span class="tag">NavMesh</span>
+          <span class="tag">헝가리안 알고리즘</span><span class="tag">FSM</span>
+          <span class="tag">RenderTexture</span>
+        </div>
+        <a class="btn" href="https://github.com/toflaks98229/Sandland">소스 보기 →</a>
+      </div>
+    </article>
+
+    <!-- SCPPJ -->
+    <article class="project">
+      <div class="shot">
+        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/scppj.png</div>
+      </div>
+      <div class="body">
+        <div class="title-row">
+          <h3>SCPPJ</h3>
+          <span class="genre">액션 어드벤처</span>
+          <span class="badge">팀 프로젝트</span>
+        </div>
+        <p class="summary">
+          전투 · 잠입 · <b>단서 추론</b>을 결합한 3D 액션 어드벤처. 스크립트 약 338개 규모로,
+          제가 참여한 프로젝트 중 <b>아키텍처를 가장 본격적으로 설계한</b> 작업입니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            팀 규모와 기능 수가 늘어나면 시스템 간 결합이 급격히 늘어납니다. 이를 <b>VContainer DI</b>로
+            스코프(Root / Gameplay / Player / Combat / UI / Puzzle)를 나눠 조립하고, 시스템끼리는
+            직접 참조 대신 <b>struct 이벤트 버스</b>로 통신하게 했습니다. 갱신도 각자 <code>Update()</code>를 도는 대신
+            <b>중앙 틱 매니저</b>가 <code>ITickable</code>을 돌립니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>마인드 스페이스</b> — 수집한 단서를 연결해 레시피와 매칭하면 추론이 성립하고, 진행도·카드가 해금됩니다.</li>
+          <li><b>스텔스</b> — 시야 감지와 <b>소음 전파</b> 기반 청각 감지의 2채널 구조. 몬스터 AI는 Idle/Patrol/Chase/Attack/Investigate/Distracted FSM입니다.</li>
+          <li><b>카드 시스템</b> — Strategy 패턴으로 즉발/투척/설치를 분리하고, 손패 UI는 MVVM으로 구성했습니다.</li>
+          <li><b>물리 인벤토리</b> — 가방 안에서 아이템이 물리적으로 굴러다니고, 마우스로 집어 옮깁니다.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">Unity 6</span><span class="tag">VContainer (DI)</span>
+          <span class="tag">이벤트 버스</span><span class="tag">Addressables</span>
+          <span class="tag">MVVM</span><span class="tag">FSM</span>
+        </div>
+        <a class="btn" href="https://github.com/Proj-DreamCatcher/SCPPJ">소스 보기 →</a>
+      </div>
+    </article>
+
+    <!-- 0MOJEON -->
+    <article class="project">
+      <div class="shot">
+        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/0mojeon.png</div>
+      </div>
+      <div class="body">
+        <div class="title-row">
+          <h3>0MOJEON</h3>
+          <span class="genre">부머 슈터</span>
+        </div>
+        <p class="summary">
+          3D 공간을 2D 빌보드 스프라이트 적들이 채우는 레트로 FPS.
+          <b>픽셀화 + 색상 팔레트 양자화</b> 렌더러 피처로 90년대 감성을 냅니다.
+        </p>
+        <ul class="points">
+          <li><b>이동감</b> — Rigidbody 가속/마찰 기반 이동에 공중 대시, 벽 슬라이딩, 계단 오르기를 얹었습니다. 부머 슈터는 이동이 곧 재미라서 여기에 가장 공을 들였습니다.</li>
+          <li><b>데이터 드리븐 무기</b> — <code>WeaponData</code>를 ScriptableObject로 두고 투사체 / 히트스캔 / 근접 / 차지 공격을 조합합니다.</li>
+          <li><b>적 AI</b> — Idle / Chase / Attack / Reposition FSM에 4가지 행동 타입, NavMesh 이동.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Unity 2022.3</span><span class="tag">URP Renderer Feature</span>
+          <span class="tag">ScriptableObject</span><span class="tag">NavMesh</span>
+        </div>
+        <a class="btn" href="https://github.com/toflaks98229/0MOJEON">소스 보기 →</a>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>More Projects</h2>
+    <p class="section-lede">그 외 개인 프로젝트입니다.</p>
+    <div class="misc">
+      <a href="https://github.com/toflaks98229/ASCII">
+        <b>ASCII</b>
+        <span>ASCII 로그라이크. 섀도캐스팅 FOV, AP 턴 시스템, 고도 → 기후 → 바이옴 → 하천 침식 → 도로로 이어지는 절차적 월드 생성기.</span>
+      </a>
+      <a href="https://github.com/toflaks98229/CarDrive">
+        <b>CarDrive</b>
+        <span>운전 서바이벌 호러. WheelCollider 차량 물리(토크 곡선·기어비·연료 소모), 무한 도로 스트리밍.</span>
+      </a>
+      <a href="https://github.com/toflaks98229/JPNGame">
+        <b>JPNGame</b>
+        <span>일본어 조사(は/が/を) 빈칸 채우기 학습 게임. 드래그&amp;드롭 카드 퍼즐, CSV → ScriptableObject 파이프라인.</span>
+      </a>
+      <a href="https://github.com/toflaks98229/runMiyabirun">
+        <b>runMiyabirun</b>
+        <span>3D 엔드리스 러너. 무한 타일 생성, 지형 상호작용 인터페이스, DOTween 연출.</span>
+      </a>
+      <a href="https://github.com/toflaks98229/magic-shooter">
+        <b>magic-shooter</b>
+        <span>자바스크립트 슈팅 게임. 스프라이트 시트 에디터를 직접 만들어 함께 넣었습니다.</span>
+      </a>
+      <a href="https://github.com/toflaks98229/magic-den">
+        <b>magic-den</b>
+        <span>웹 기반 게임 및 에디터.</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Tech Stack</h2>
+    <p class="section-lede">프로젝트에서 실제로 사용한 것만 적었습니다.</p>
+    <div class="stack">
+      <div>
+        <h4>엔진 · 언어</h4>
+        <div class="tags">
+          <span class="tag">Unity 2022.3 LTS</span><span class="tag">Unity 6</span>
+          <span class="tag">C#</span><span class="tag">HLSL</span><span class="tag">.NET 8</span>
+        </div>
+      </div>
+      <div>
+        <h4>렌더링</h4>
+        <div class="tags">
+          <span class="tag">URP</span><span class="tag">커스텀 Renderer Feature</span>
+          <span class="tag">RenderTexture</span><span class="tag">AsyncGPUReadback</span>
+          <span class="tag">TextMeshPro</span>
+        </div>
+      </div>
+      <div>
+        <h4>성능</h4>
+        <div class="tags">
+          <span class="tag">DOTS / Burst</span><span class="tag">Job System</span>
+          <span class="tag">오브젝트 풀링</span><span class="tag">공간 해시 그리드</span>
+          <span class="tag">RaycastCommand</span>
+        </div>
+      </div>
+      <div>
+        <h4>아키텍처 · 패턴</h4>
+        <div class="tags">
+          <span class="tag">VContainer (DI)</span><span class="tag">이벤트 버스</span>
+          <span class="tag">FSM</span><span class="tag">Strategy</span>
+          <span class="tag">MVVM</span><span class="tag">Pub-Sub</span>
+        </div>
+      </div>
+      <div>
+        <h4>직접 구현한 알고리즘</h4>
+        <div class="tags">
+          <span class="tag">헝가리안 알고리즘</span><span class="tag">BSP 던전 생성</span>
+          <span class="tag">셀룰러 오토마타</span><span class="tag">펄린 노이즈 지형</span>
+          <span class="tag">섀도캐스팅 FOV</span><span class="tag">BFS 전파</span>
+          <span class="tag">유량 누적 하천 침식</span>
+        </div>
+      </div>
+      <div>
+        <h4>워크플로</h4>
+        <div class="tags">
+          <span class="tag">ScriptableObject</span><span class="tag">CSV 임포터</span>
+          <span class="tag">커스텀 에디터 툴</span><span class="tag">Addressables</span>
+          <span class="tag">Git</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>
+      모든 프로젝트의 소스는 <a href="https://github.com/toflaks98229">github.com/toflaks98229</a>에 공개돼 있습니다.
+    </p>
+  </div>
+</footer>
+
+<script>
+  // 테마 토글: 시스템 설정을 기본으로 쓰고, 사용자가 누르면 그 선택을 기억합니다.
+  const root = document.documentElement;
+  const saved = localStorage.getItem('theme');
+  if (saved) root.setAttribute('data-theme', saved);
+
+  document.getElementById('theme').addEventListener('click', () => {
+    const systemDark = matchMedia('(prefers-color-scheme: dark)').matches;
+    const current = root.getAttribute('data-theme') || (systemDark ? 'dark' : 'light');
+    const next = current === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    localStorage.setItem('theme', next);
+  });
+</script>
+
+</body>
+</html>
