@@ -57,12 +57,37 @@
   /* ── 프로젝트 카드 ── */
   .project{background:var(--surface);border:1px solid var(--line);border-radius:12px;
            overflow:hidden;margin-bottom:28px}
+
+  /* 영상: 클릭하기 전까지는 썸네일만 띄우고, 누를 때 iframe을 붙입니다.
+     (페이지 로드 시 유튜브 스크립트를 미리 받지 않도록) */
   .shot{aspect-ratio:16/9;background:var(--code-bg);border-bottom:1px solid var(--line);
-        display:flex;align-items:center;justify-content:center;position:relative}
-  .shot img{width:100%;height:100%;object-fit:cover;display:block}
-  .shot .placeholder{text-align:center;color:var(--muted);font-family:var(--mono);
-                     font-size:12px;padding:20px;line-height:1.9}
-  .shot .placeholder b{display:block;font-size:26px;margin-bottom:6px;opacity:.35}
+        position:relative;overflow:hidden}
+  .facade{width:100%;height:100%;border:0;padding:0;margin:0;display:block;cursor:pointer;
+          background:none;position:relative}
+  .facade img{width:100%;height:100%;object-fit:cover;display:block}
+  .facade::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.18);
+                 transition:background .15s}
+  .facade:hover::after{background:rgba(0,0,0,.05)}
+  .play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:1;
+        width:66px;height:46px;border-radius:11px;background:rgba(20,20,20,.78);
+        display:flex;align-items:center;justify-content:center;transition:background .15s}
+  .facade:hover .play{background:#e8321f}
+  .play::before{content:"";border-style:solid;border-width:9px 0 9px 15px;
+                border-color:transparent transparent transparent #fff;margin-left:3px}
+  .shot iframe{width:100%;height:100%;border:0;display:block}
+  .shot img.still{width:100%;height:100%;object-fit:cover;display:block}
+  .shot .placeholder{width:100%;height:100%;display:flex;flex-direction:column;
+                     align-items:center;justify-content:center;text-align:center;
+                     color:var(--muted);font-family:var(--mono);font-size:12px;line-height:1.9}
+  .shot .placeholder b{font-size:26px;margin-bottom:6px;opacity:.35;font-weight:400}
+
+  /* 영상이 여러 개인 프로젝트의 전환 탭 */
+  .vidtabs{display:flex;gap:6px;padding:10px 28px 0;flex-wrap:wrap}
+  .vidtabs button{font-family:var(--mono);font-size:11px;padding:4px 10px;border-radius:5px;
+                  border:1px solid var(--line);background:var(--surface);color:var(--muted);cursor:pointer}
+  .vidtabs button:hover{border-color:var(--accent);color:var(--accent)}
+  .vidtabs button[aria-pressed="true"]{background:var(--accent-soft);border-color:var(--accent);color:var(--accent)}
+
   .body{padding:26px 28px 28px}
   .title-row{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:6px}
   .project h3{margin:0;font-size:22px;letter-spacing:-.01em}
@@ -79,12 +104,14 @@
 
   ul.points{margin:0 0 18px;padding-left:20px}
   ul.points li{margin-bottom:6px}
-  ul.points code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);
+  ul.points code, .summary code{font-family:var(--mono);font-size:.88em;background:var(--code-bg);
                  padding:1px 5px;border-radius:4px}
 
   .tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:18px}
   .tag{font-family:var(--mono);font-size:11px;padding:3px 8px;border-radius:4px;
        background:var(--code-bg);color:var(--muted)}
+
+  .cta{display:flex;gap:8px;flex-wrap:wrap}
 
   /* ── 스택 ── */
   .stack{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:24px}
@@ -101,7 +128,6 @@
 
   footer{padding:44px 0 64px;color:var(--muted);font-size:14px}
 
-  /* ── 테마 토글 ── */
   #theme{position:fixed;top:18px;right:18px;width:38px;height:38px;border-radius:50%;
          border:1px solid var(--line);background:var(--surface);color:var(--ink);
          cursor:pointer;font-size:15px;line-height:1;z-index:10}
@@ -133,55 +159,15 @@
     <h2>Selected Work</h2>
     <p class="section-lede">
       각 프로젝트에서 <b>가장 어려웠던 문제 하나</b>와 그것을 어떻게 풀었는지를 중심으로 정리했습니다.
-      모든 프로젝트는 소스가 공개돼 있습니다.
+      썸네일을 누르면 플레이 영상이 재생됩니다. 모든 프로젝트는 소스가 공개돼 있습니다.
     </p>
-
-    <!-- RTXX -->
-    <article class="project">
-      <div class="shot">
-        <!-- 스크린샷 교체: <img src="assets/rtxx.png" alt="RTXX 전투 화면"> -->
-        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/rtxx.png</div>
-      </div>
-      <div class="body">
-        <div class="title-row">
-          <h3>RTXX</h3>
-          <span class="genre">실시간 전략 · Total War 계열</span>
-        </div>
-        <p class="summary">
-          개별 유닛에게 명령하는 게 아니라, 우클릭으로 <b>선을 그어 부대의 정면과 폭</b>을 지정하면
-          병사들이 알아서 대형을 갖추는 군단 단위 RTS입니다. 2D 픽셀 스프라이트 병사들이 3D 지형 위에서 싸웁니다.
-        </p>
-
-        <div class="highlight">
-          <span class="label">핵심 문제</span>
-          <p>
-            "부대원 200명을 대형 슬롯 200개에 어떻게 배치할 것인가?" 가까운 슬롯부터 그리디하게 배정하면
-            병사들의 이동 경로가 서로 교차하면서 대형이 엉킵니다. 이 문제를 <b>이분 그래프 최적 할당</b>으로 보고,
-            <b>헝가리안 알고리즘</b>을 직접 구현해 <b>총 이동거리가 최소가 되는 배치</b>를 계산했습니다.
-            같은 알고리즘을 부대 ↔ 진형 선분 배정에도 재사용합니다.
-          </p>
-        </div>
-
-        <ul class="points">
-          <li><b>DOTS 병렬화</b> — 부대/유닛/전투/애니메이션/스탯/대형 갱신을 전부 <code>[BurstCompile] IJobParallelFor</code>로 처리하고, 지형 접지 판정은 <code>RaycastCommand</code>로 배치 처리합니다.</li>
-          <li><b>중앙 집중 업데이트 루프</b> — 모든 MonoBehaviour가 스스로를 비활성화하고, <code>Controller</code>가 <code>_Update()</code>를 직접 호출합니다. Unity의 <code>Update()</code> 호출 오버헤드를 없애기 위한 선택입니다.</li>
-          <li><b>각도 기반 전투</b> — 정면 피격은 방어력·방패가 100% 적용되지만 측후면은 50%만 적용됩니다. 대형의 측면을 파고드는 것이 전술적으로 의미를 갖습니다.</li>
-          <li>3초간 교전이 없으면 <b>자동 재정렬</b>이 걸려 무너진 대형을 복구합니다.</li>
-        </ul>
-
-        <div class="tags">
-          <span class="tag">Unity 2022.3</span><span class="tag">URP</span>
-          <span class="tag">DOTS / Burst</span><span class="tag">Job System</span>
-          <span class="tag">헝가리안 알고리즘</span>
-        </div>
-        <a class="btn" href="https://github.com/toflaks98229/RTXX">소스 보기 →</a>
-      </div>
-    </article>
 
     <!-- ASCIIROG -->
     <article class="project">
-      <div class="shot">
-        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/asciirog.png</div>
+      <div class="shot" data-yt="OIBtsfVkd5g" data-title="ASCIIROG 플레이 영상"></div>
+      <div class="vidtabs" data-for="OIBtsfVkd5g">
+        <button data-yt="OIBtsfVkd5g" aria-pressed="true">영상 1 · 시뮬레이션</button>
+        <button data-yt="0_NBunXh-W8" aria-pressed="false">영상 2 · 플레이</button>
       </div>
       <div class="body">
         <div class="title-row">
@@ -216,14 +202,184 @@
           <span class="tag">Strategy 패턴</span><span class="tag">BFS 전파</span>
           <span class="tag">셀룰러 오토마타</span>
         </div>
-        <a class="btn" href="https://github.com/toflaks98229/ASCIIROG">소스 보기 →</a>
+        <div class="cta">
+          <a class="btn" href="https://github.com/toflaks98229/ASCIIROG">소스 보기 →</a>
+          <a class="btn" href="https://youtu.be/OIBtsfVkd5g">유튜브에서 보기</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- RTXX -->
+    <article class="project">
+      <div class="shot">
+        <!-- 영상/스크린샷이 생기면: <img class="still" src="assets/rtxx.png" alt="RTXX 전투 화면">
+             또는 위 ASCIIROG처럼 <div class="shot" data-yt="영상ID"></div> 로 교체 -->
+        <div class="placeholder"><b>▦</b>영상 · 스크린샷 자리<br>assets/rtxx.png</div>
+      </div>
+      <div class="body">
+        <div class="title-row">
+          <h3>RTXX</h3>
+          <span class="genre">실시간 전략 · Total War 계열</span>
+        </div>
+        <p class="summary">
+          개별 유닛에게 명령하는 게 아니라, 우클릭으로 <b>선을 그어 부대의 정면과 폭</b>을 지정하면
+          병사들이 알아서 대형을 갖추는 군단 단위 RTS입니다. 2D 픽셀 스프라이트 병사들이 3D 지형 위에서 싸웁니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            "부대원 200명을 대형 슬롯 200개에 어떻게 배치할 것인가?" 가까운 슬롯부터 그리디하게 배정하면
+            병사들의 이동 경로가 서로 교차하면서 대형이 엉킵니다. 이 문제를 <b>이분 그래프 최적 할당</b>으로 보고,
+            <b>헝가리안 알고리즘</b>을 직접 구현해 <b>총 이동거리가 최소가 되는 배치</b>를 계산했습니다.
+            같은 알고리즘을 부대 ↔ 진형 선분 배정에도 재사용합니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>DOTS 병렬화</b> — 부대/유닛/전투/애니메이션/스탯/대형 갱신을 전부 <code>[BurstCompile] IJobParallelFor</code>로 처리하고, 지형 접지 판정은 <code>RaycastCommand</code>로 배치 처리합니다.</li>
+          <li><b>중앙 집중 업데이트 루프</b> — 모든 MonoBehaviour가 스스로를 비활성화하고, <code>Controller</code>가 <code>_Update()</code>를 직접 호출합니다. Unity의 <code>Update()</code> 호출 오버헤드를 없애기 위한 선택입니다.</li>
+          <li><b>각도 기반 전투</b> — 정면 피격은 방어력·방패가 100% 적용되지만 측후면은 50%만 적용됩니다. 대형의 측면을 파고드는 것이 전술적으로 의미를 갖습니다.</li>
+          <li>3초간 교전이 없으면 <b>자동 재정렬</b>이 걸려 무너진 대형을 복구합니다.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">Unity 2022.3</span><span class="tag">URP</span>
+          <span class="tag">DOTS / Burst</span><span class="tag">Job System</span>
+          <span class="tag">헝가리안 알고리즘</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="https://github.com/toflaks98229/RTXX">소스 보기 →</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- CarDrive -->
+    <article class="project">
+      <div class="shot" data-yt="SUVzBXhZtMc" data-title="CarDrive 플레이 영상"></div>
+      <div class="vidtabs" data-for="SUVzBXhZtMc">
+        <button data-yt="SUVzBXhZtMc" aria-pressed="true">영상 1 · 차 안의 괴물</button>
+        <button data-yt="B6Pzet2_lRE" aria-pressed="false">영상 2 · 엑소시즘 효과</button>
+      </div>
+      <div class="body">
+        <div class="title-row">
+          <h3>CarDrive</h3>
+          <span class="genre">운전 서바이벌 호러</span>
+        </div>
+        <p class="summary">
+          밤길을 달리는 1인칭 운전 게임. 주행 중 <b>귀신이 차체에 달라붙어</b> 체력을 깎고,
+          플레이어는 앙크를 충전해 퇴치해야 합니다. 운전과 전투를 동시에 해야 한다는 점이 긴장을 만듭니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            운전이 "그냥 앞으로 가는 것"이 되면 호러가 성립하지 않습니다. 그래서 차량을
+            <b>WheelCollider 기반 물리</b>로 만들고 <code>CarData</code>에 <b>토크 곡선·기어비·연료 소모</b>를
+            데이터로 분리했습니다. 자동 변속과 시동(E키) 개념까지 넣어서, <b>귀신이 붙었을 때
+            "일단 세우고 처리할지, 달리면서 버틸지"가 실제 트레이드오프</b>가 되게 했습니다.
+            귀신은 시동이 걸려 있을 때만 스폰됩니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>무한 도로 스트리밍</b> — <code>RoadManager</code>가 도로 세그먼트를 앞쪽에 생성하고 뒤쪽을 회수해, 끝없이 이어지는 밤길을 만듭니다.</li>
+          <li><b>퇴치 판정</b> — 마우스 좌클릭으로 앙크를 충전하고 <code>SphereCast</code>로 달라붙은 귀신을 맞힙니다.</li>
+          <li><b>레트로 룩</b> — 커스텀 URP 렌더러 피처로 픽셀화 + 팔레트 색상 양자화·디더링을 적용했습니다.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">Unity 2022.3</span><span class="tag">WheelCollider</span>
+          <span class="tag">URP Renderer Feature</span><span class="tag">ScriptableObject</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="https://github.com/toflaks98229/CarDrive">소스 보기 →</a>
+          <a class="btn" href="https://youtu.be/SUVzBXhZtMc">유튜브에서 보기</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- Sandland -->
+    <article class="project">
+      <div class="shot" data-yt="Z-nU6Ft5B3g" data-title="Sandland 플레이 영상"></div>
+      <div class="body">
+        <div class="title-row">
+          <h3>Sandland</h3>
+          <span class="genre">드론 지휘</span>
+        </div>
+        <p class="summary">
+          1인칭으로 관제실을 돌아다니다 CRT 모니터 앞에 서면 제어 모드로 들어가고,
+          <b>모니터 화면 너머로</b> 정찰 드론 편대를 지휘합니다. 화면은 RenderTexture에 픽셀화·CRT 셰이더를 입혀 그립니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            드론 편대가 대형(Line / Circle / V / Diamond)을 유지하며 NavMesh 위를 날아야 했습니다.
+            여기서도 <b>어떤 드론이 어떤 대형 슬롯으로 갈지</b>가 문제였고, RTXX와 마찬가지로
+            <b>헝가리안 알고리즘</b>으로 최적 배정을 풀었습니다. 역할별로 카메라·수송·공격·호위·방어 드론이
+            각자의 상태 머신(약 1,400줄)을 따라 움직입니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>구체 스캔 시스템</b> — 스캔 범위가 구체로 퍼져나가며 아이템과 적을 태깅합니다.</li>
+          <li><b>무기 / 투사체</b> — 머신건·미사일·레이저, 탄도 및 유도 투사체, 오브젝트 풀링.</li>
+          <li><b>관제 UI</b> — 레이더, 고도계, 나침반, 드론 상태, 아이템 관리 패널을 모니터 안에 구현.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">Unity 2022.3</span><span class="tag">NavMesh</span>
+          <span class="tag">헝가리안 알고리즘</span><span class="tag">FSM</span>
+          <span class="tag">RenderTexture</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="https://github.com/toflaks98229/Sandland">소스 보기 →</a>
+          <a class="btn" href="https://youtu.be/Z-nU6Ft5B3g">유튜브에서 보기</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- 0MOJEON -->
+    <article class="project">
+      <div class="shot" data-yt="gigAVQnktbc" data-title="0MOJEON 플레이 영상"></div>
+      <div class="body">
+        <div class="title-row">
+          <h3>0MOJEON</h3>
+          <span class="genre">부머 슈터</span>
+        </div>
+        <p class="summary">
+          3D 공간을 2D 빌보드 스프라이트 적들이 채우는 레트로 FPS.
+          <b>픽셀화 + 색상 팔레트 양자화</b> 렌더러 피처로 90년대 감성을 냅니다.
+        </p>
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            부머 슈터는 <b>이동이 곧 재미</b>인 장르라, 총보다 발에 공을 들여야 했습니다.
+            Rigidbody 가속/마찰 기반 이동 위에 <b>공중 대시, 벽 슬라이딩, 계단 자동 오르기</b>를 얹어
+            멈추지 않고 계속 흐르는 감각을 만들었습니다.
+          </p>
+        </div>
+        <ul class="points">
+          <li><b>데이터 드리븐 무기</b> — <code>WeaponData</code>를 ScriptableObject로 두고 투사체 / 히트스캔 / 근접 / 차지 공격을 조합합니다.</li>
+          <li><b>적 AI</b> — Idle / Chase / Attack / Reposition FSM에 4가지 행동 타입, NavMesh 이동.</li>
+          <li><b>아레나 구조</b> — 게이트·열쇠, 픽업, 함정, 오브젝트 풀링, 스탯 수정자 시스템.</li>
+        </ul>
+        <div class="tags">
+          <span class="tag">Unity 2022.3</span><span class="tag">URP Renderer Feature</span>
+          <span class="tag">ScriptableObject</span><span class="tag">NavMesh</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="https://github.com/toflaks98229/0MOJEON">소스 보기 →</a>
+          <a class="btn" href="https://youtu.be/gigAVQnktbc">유튜브에서 보기</a>
+        </div>
       </div>
     </article>
 
     <!-- MX4 -->
     <article class="project">
       <div class="shot">
-        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/mx4.png</div>
+        <div class="placeholder"><b>▦</b>영상 · 스크린샷 자리<br>assets/mx4.png</div>
       </div>
       <div class="body">
         <div class="title-row">
@@ -258,54 +414,16 @@
           <span class="tag">RenderTexture</span><span class="tag">AsyncGPUReadback</span>
           <span class="tag">WebGL</span><span class="tag">.NET 8</span>
         </div>
-        <a class="btn" href="https://github.com/toflaks98229/MX4">소스 보기 →</a>
-      </div>
-    </article>
-
-    <!-- Sandland -->
-    <article class="project">
-      <div class="shot">
-        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/sandland.png</div>
-      </div>
-      <div class="body">
-        <div class="title-row">
-          <h3>Sandland</h3>
-          <span class="genre">드론 지휘</span>
+        <div class="cta">
+          <a class="btn" href="https://github.com/toflaks98229/MX4">소스 보기 →</a>
         </div>
-        <p class="summary">
-          1인칭으로 관제실을 돌아다니다 CRT 모니터 앞에 서면 제어 모드로 들어가고,
-          <b>모니터 화면 너머로</b> 정찰 드론 편대를 지휘합니다. 화면은 RenderTexture에 픽셀화·CRT 셰이더를 입혀 그립니다.
-        </p>
-
-        <div class="highlight">
-          <span class="label">핵심 문제</span>
-          <p>
-            드론 편대가 대형(Line / Circle / V / Diamond)을 유지하며 NavMesh 위를 날아야 했습니다.
-            여기서도 <b>어떤 드론이 어떤 대형 슬롯으로 갈지</b>가 문제였고, RTXX와 마찬가지로
-            <b>헝가리안 알고리즘</b>으로 최적 배정을 풀었습니다. 역할별로 카메라·수송·공격·호위·방어 드론이
-            각자의 상태 머신(약 1,400줄)을 따라 움직입니다.
-          </p>
-        </div>
-
-        <ul class="points">
-          <li><b>구체 스캔 시스템</b> — 스캔 범위가 구체로 퍼져나가며 아이템과 적을 태깅합니다.</li>
-          <li><b>무기 / 투사체</b> — 머신건·미사일·레이저, 탄도 및 유도 투사체, 오브젝트 풀링.</li>
-          <li><b>관제 UI</b> — 레이더, 고도계, 나침반, 드론 상태, 아이템 관리 패널을 모니터 안에 구현.</li>
-        </ul>
-
-        <div class="tags">
-          <span class="tag">Unity 2022.3</span><span class="tag">NavMesh</span>
-          <span class="tag">헝가리안 알고리즘</span><span class="tag">FSM</span>
-          <span class="tag">RenderTexture</span>
-        </div>
-        <a class="btn" href="https://github.com/toflaks98229/Sandland">소스 보기 →</a>
       </div>
     </article>
 
     <!-- SCPPJ -->
     <article class="project">
       <div class="shot">
-        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/scppj.png</div>
+        <div class="placeholder"><b>▦</b>영상 · 스크린샷 자리<br>assets/scppj.png</div>
       </div>
       <div class="body">
         <div class="title-row">
@@ -340,34 +458,9 @@
           <span class="tag">이벤트 버스</span><span class="tag">Addressables</span>
           <span class="tag">MVVM</span><span class="tag">FSM</span>
         </div>
-        <a class="btn" href="https://github.com/Proj-DreamCatcher/SCPPJ">소스 보기 →</a>
-      </div>
-    </article>
-
-    <!-- 0MOJEON -->
-    <article class="project">
-      <div class="shot">
-        <div class="placeholder"><b>▦</b>스크린샷 자리<br>assets/0mojeon.png</div>
-      </div>
-      <div class="body">
-        <div class="title-row">
-          <h3>0MOJEON</h3>
-          <span class="genre">부머 슈터</span>
+        <div class="cta">
+          <a class="btn" href="https://github.com/Proj-DreamCatcher/SCPPJ">소스 보기 →</a>
         </div>
-        <p class="summary">
-          3D 공간을 2D 빌보드 스프라이트 적들이 채우는 레트로 FPS.
-          <b>픽셀화 + 색상 팔레트 양자화</b> 렌더러 피처로 90년대 감성을 냅니다.
-        </p>
-        <ul class="points">
-          <li><b>이동감</b> — Rigidbody 가속/마찰 기반 이동에 공중 대시, 벽 슬라이딩, 계단 오르기를 얹었습니다. 부머 슈터는 이동이 곧 재미라서 여기에 가장 공을 들였습니다.</li>
-          <li><b>데이터 드리븐 무기</b> — <code>WeaponData</code>를 ScriptableObject로 두고 투사체 / 히트스캔 / 근접 / 차지 공격을 조합합니다.</li>
-          <li><b>적 AI</b> — Idle / Chase / Attack / Reposition FSM에 4가지 행동 타입, NavMesh 이동.</li>
-        </ul>
-        <div class="tags">
-          <span class="tag">Unity 2022.3</span><span class="tag">URP Renderer Feature</span>
-          <span class="tag">ScriptableObject</span><span class="tag">NavMesh</span>
-        </div>
-        <a class="btn" href="https://github.com/toflaks98229/0MOJEON">소스 보기 →</a>
       </div>
     </article>
 
@@ -382,10 +475,6 @@
       <a href="https://github.com/toflaks98229/ASCII">
         <b>ASCII</b>
         <span>ASCII 로그라이크. 섀도캐스팅 FOV, AP 턴 시스템, 고도 → 기후 → 바이옴 → 하천 침식 → 도로로 이어지는 절차적 월드 생성기.</span>
-      </a>
-      <a href="https://github.com/toflaks98229/CarDrive">
-        <b>CarDrive</b>
-        <span>운전 서바이벌 호러. WheelCollider 차량 물리(토크 곡선·기어비·연료 소모), 무한 도로 스트리밍.</span>
       </a>
       <a href="https://github.com/toflaks98229/JPNGame">
         <b>JPNGame</b>
@@ -473,7 +562,59 @@
 </footer>
 
 <script>
-  // 테마 토글: 시스템 설정을 기본으로 쓰고, 사용자가 누르면 그 선택을 기억합니다.
+  // ── 유튜브 파사드 ──
+  // 페이지를 열자마자 유튜브 iframe을 붙이면 영상 개수만큼 무거워지므로,
+  // 처음에는 썸네일만 그리고 클릭하는 순간에만 iframe으로 교체합니다.
+  function paintFacade(shot) {
+    const id = shot.dataset.yt;
+    const title = shot.dataset.title || '플레이 영상';
+    shot.innerHTML = '';
+
+    const btn = document.createElement('button');
+    btn.className = 'facade';
+    btn.type = 'button';
+    btn.setAttribute('aria-label', title + ' 재생');
+
+    const img = document.createElement('img');
+    img.loading = 'lazy';
+    img.alt = title;
+    img.src = 'https://i.ytimg.com/vi/' + id + '/maxresdefault.jpg';
+    // maxres가 없는 영상이면 hq로 떨어뜨립니다.
+    img.onerror = () => { img.src = 'https://i.ytimg.com/vi/' + id + '/hqdefault.jpg'; };
+
+    const play = document.createElement('span');
+    play.className = 'play';
+
+    btn.append(img, play);
+    btn.addEventListener('click', () => {
+      const f = document.createElement('iframe');
+      f.src = 'https://www.youtube-nocookie.com/embed/' + id + '?autoplay=1&rel=0';
+      f.title = title;
+      f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture';
+      f.allowFullscreen = true;
+      shot.innerHTML = '';
+      shot.append(f);
+    });
+
+    shot.append(btn);
+  }
+
+  document.querySelectorAll('.shot[data-yt]').forEach(paintFacade);
+
+  // 영상이 여러 개인 프로젝트: 탭을 누르면 파사드를 그 영상으로 다시 그립니다.
+  document.querySelectorAll('.vidtabs').forEach(tabs => {
+    const shot = tabs.previousElementSibling;
+    tabs.querySelectorAll('button').forEach(b => {
+      b.addEventListener('click', () => {
+        tabs.querySelectorAll('button').forEach(x => x.setAttribute('aria-pressed', 'false'));
+        b.setAttribute('aria-pressed', 'true');
+        shot.dataset.yt = b.dataset.yt;
+        paintFacade(shot);
+      });
+    });
+  });
+
+  // ── 테마 토글 ──
   const root = document.documentElement;
   const saved = localStorage.getItem('theme');
   if (saved) root.setAttribute('data-theme', saved);
