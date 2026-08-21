@@ -216,6 +216,52 @@
       </div>
     </article>
 
+    <!-- SRPG -->
+    <article class="project">
+      <div class="shot" data-yt="0ayenb_ujhg" data-title="SRPG 플레이 영상"></div>
+      <div class="body">
+        <div class="title-row">
+          <h3>SRPG</h3>
+          <span class="genre">실시간 전술 · Bad North 계열</span>
+        </div>
+        <p class="summary">
+          계단식 대지와 초크포인트로 이루어진 섬에 상륙하는 적을 부대로 막아내는 실시간 전술 게임.
+          지형이 절차적으로 생성되고, 부대는 전투를 치를수록 성장합니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            전투 로직이 <code>MonoBehaviour</code>와 씬에 얽히면 규칙 하나를 검증할 때마다 게임을 켜야 합니다.
+            그래서 전투를 <b>주문서를 받아 보고서를 내놓는 계약</b>으로 정의하고, 판단 로직을
+            유니티에 의존하지 않는 <b>순수 계층</b>으로 내렸습니다. 어셈블리를
+            <code>Core</code> / <code>Data</code> / <code>Systems</code> / <code>Gameplay</code> / <code>UI</code> / <code>Composition</code>으로 갈라
+            의존 방향을 컴파일러가 강제하게 하고, VContainer로 <b>전역 · 캠페인 · 전투</b> 세 수명을 분리했습니다.
+            덕분에 전투 규칙을 EditMode 테스트로 씬 없이 돌립니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>적 AI</b> — 유틸리티 판단과 <b>영향력 맵</b>으로 목표를 고릅니다. 개별 병사가 아니라 <b>부대 단위</b>로 표적을 잡아, 적이 전선을 보고 움직입니다.</li>
+          <li><b>지형 생성</b> — 침식을 먼저 돌리고 타일은 그 결과를 읽기만 합니다. 순서를 뒤집으니 각진 사각형 대신 계곡과 초크포인트가 있는 전술 지형이 나옵니다.</li>
+          <li><b>병과 상성</b> — 창병 방어선과 방패 역학, 근접병의 대열 이탈과 도약 공격. 교전이 끝나면 무너진 진형을 복구합니다.</li>
+          <li><b>부대 성장</b> — 단련도 · 무기 숙련도 · 갑옷 상성이 누적되고, 출진 편성에서 어느 부대를 내보낼지 고릅니다.</li>
+          <li><b>2.5D 렌더링</b> — 직교 투영으로 픽셀 격자를 온전히 유지하고, 빌보드 유닛에 외곽선 · 경계 음영 · 색상 제한을 걸어 지형 판독성을 확보했습니다.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">Unity 6</span><span class="tag">URP</span>
+          <span class="tag">VContainer (DI)</span><span class="tag">어셈블리 분리</span>
+          <span class="tag">영향력 맵</span><span class="tag">NavMesh</span>
+          <span class="tag">EditMode / PlayMode 테스트</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="https://github.com/toflaks98229/SRPG">소스 보기 →</a>
+          <a class="btn" href="https://youtu.be/0ayenb_ujhg">유튜브에서 보기</a>
+        </div>
+      </div>
+    </article>
+
     <!-- ASCIIROG -->
     <article class="project">
       <div class="shot" data-yt="OIBtsfVkd5g" data-title="ASCIIROG 플레이 영상"></div>
@@ -427,9 +473,6 @@
 
     <!-- MX4 -->
     <article class="project">
-      <div class="shot">
-        <div class="placeholder"><b>▦</b>영상 · 스크린샷 자리<br>assets/mx4.png</div>
-      </div>
       <div class="body">
         <div class="title-row">
           <h3>MX4</h3>
@@ -569,10 +612,6 @@
     <h2>More Projects</h2>
     <p class="section-lede">그 외 개인 프로젝트입니다.</p>
     <div class="misc">
-      <a href="https://github.com/toflaks98229/SRPG">
-        <b>SRPG</b>
-        <span>Bad North 계열 실시간 전술 프로토타입. 부대의 단련도·무기 숙련도·갑옷 상성, VContainer로 전역·캠페인·전투로 가른 수명, 직교 투영 픽셀 그리드 렌더링.</span>
-      </a>
       <a href="https://github.com/toflaks98229/nethack-realtime">
         <b>nethack-realtime</b>
         <span>NetHack 5.0을 실시간으로 개조한 포크. 턴이 아니라 벽시계로 세계가 흘러, 키를 누르지 않아도 몬스터가 다가옵니다. C.</span>
