@@ -126,6 +126,17 @@
   .misc b{display:block;margin-bottom:3px}
   .misc span{font-size:13px;color:var(--muted)}
 
+  /* ── 교육 ── */
+  .edu{display:flex;gap:24px;flex-wrap:wrap;background:var(--surface);
+       border:1px solid var(--line);border-radius:12px;padding:20px 24px}
+  .edu-when{font-family:var(--mono);font-size:13px;color:var(--accent);
+            white-space:nowrap;padding-top:3px}
+  .edu + .edu{margin-top:14px}
+  .edu > div:last-child{flex:1;min-width:260px}
+  .edu h4{margin:0 0 4px;font-size:17px;letter-spacing:-.01em}
+  .edu p{margin:0;color:var(--muted);font-size:15px}
+  .edu ul.points{margin:10px 0 0;font-size:15px}
+
   footer{padding:44px 0 64px;color:var(--muted);font-size:14px}
 
   #theme{position:fixed;top:18px;right:18px;width:38px;height:38px;border-radius:50%;
@@ -160,6 +171,52 @@
       프로젝트마다 마주한 핵심 문제와 그 해결 과정을 정리했습니다.
       썸네일을 누르면 플레이 영상이 재생됩니다. 소스는 대부분 공개돼 있습니다.
     </p>
+
+    <!-- SFPS -->
+    <article class="project">
+      <div class="shot">
+        <div class="placeholder"><b>▦</b>영상 · 스크린샷 자리<br>assets/sfps.png</div>
+      </div>
+      <div class="body">
+        <div class="title-row">
+          <h3>SFPS</h3>
+          <span class="genre">부머 슈터 · 자체 엔진</span>
+          <span class="badge">C · 엔진 직접 구현</span>
+        </div>
+        <p class="summary">
+          <b>1.44MB 플로피 한 장에 들어가는 3D FPS</b>. 단일 <code>.exe</code>이고 에셋 파일이 하나도 없습니다.
+          상용 엔진 없이 Win32와 OpenGL 3.3 코어만 써서 <b>엔진부터 C로 직접 작성</b>했습니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            1,474,560바이트 안에 게임 하나를 통째로 넣어야 했습니다. 답은 압축이 아니라
+            <b>에셋을 파일이 아니라 텍스트 레시피로 두는 것</b>이었습니다. 텍스처·모델·스프라이트·사운드가
+            전부 정수 텍스트로 기술돼 실행 시점에 생성됩니다. 모델은 <b>2D 외곽선과 두께</b>만 주면 엔진이
+            돌출시키고 귀 자르기로 삼각분할하며, UV는 그 과정에서 저절로 나와 <b>언랩할 것이 없습니다</b>.
+            현재 411,648 / 1,474,560 바이트로 예산의 27.9%를 씁니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>절차적 머티리얼</b> — 벽돌·타일·나무·대리석을 프래그먼트 셰이더가 UV에서 계산합니다. 해상도가 없으니 코앞에 붙어도 선명하고, 256KB 텍스처 대신 유니폼 네 개만 씁니다.</li>
+          <li><b>광택은 알파 채널에</b> — 텍스처가 이미 RGBA인데 알파를 쓰지 않고 있었습니다. 거기에 gloss를 태워 픽셀당 스페큘러를 <b>텍스처도 샘플러도 늘리지 않고</b> 얻었습니다.</li>
+          <li><b>레벨 저작</b> — 섹터 방식과 TrenchBroom 브러시를 한 에피소드 안에서 섞어 씁니다. 개발 빌드는 <code>assets\</code>를 저장할 때마다 핫 리로드하고, 배포 빌드는 같은 에셋을 컴파일 시점에 구워 넣습니다.</li>
+          <li><b>이동</b> — DOOM Eternal식 미트훅과 반동 점프, Quake식 샷건. 훅을 던져 놓으면 당김·피격·도약이 알아서 이어집니다.</li>
+          <li><b>서브시스템별 테스트 하네스</b> — 레벨·모델·사운드·훅·적을 각각 단독 실행해 검증하는 툴 30여 개를 <code>tools/</code>에 따로 뒀습니다. 모델 에디터와 맵 에디터도 여기 있습니다.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">C</span><span class="tag">Win32 API</span>
+          <span class="tag">OpenGL 3.3 Core</span><span class="tag">GLSL</span>
+          <span class="tag">절차적 생성</span><span class="tag">핫 리로드</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="https://github.com/toflaks98229/SFPS">소스 보기 →</a>
+        </div>
+      </div>
+    </article>
 
     <!-- ASCIIROG -->
     <article class="project">
@@ -373,13 +430,13 @@
     <!-- MX4 -->
     <article class="project">
       <div class="shot">
-        <img class="still" src="assets/mx4.png" alt="MX4 — 3D 오브젝트 표면의 얼룩과 도구 선택 방사형 메뉴">
+        <div class="placeholder"><b>▦</b>영상 · 스크린샷 자리<br>assets/mx4.png</div>
       </div>
       <div class="body">
         <div class="title-row">
           <h3>MX4</h3>
           <span class="genre">청소 시뮬레이터</span>
-          <span class="badge">하드웨어 연동</span>
+          <span class="badge">Logitech 공식 협업</span>
         </div>
         <p class="summary">
           마우스를 드래그해 3D 오브젝트 표면의 얼룩을 물로 닦아내는 게임.
@@ -409,7 +466,8 @@
           <span class="tag">WebGL</span><span class="tag">.NET 8</span>
         </div>
         <div class="cta">
-          <a class="btn" href="https://github.com/toflaks98229/MX4">소스 보기 →</a>
+          <a class="btn" href="https://github.com/toflaks98229/MX4-core">소스 보기 →</a>
+          <a class="btn" href="#collab">협업 내용 보기</a>
         </div>
       </div>
     </article>
@@ -461,11 +519,72 @@
   </div>
 </section>
 
+<section id="collab">
+  <div class="wrap">
+    <h2>Collaboration</h2>
+    <p class="section-lede">외부 조직과 함께 진행한 작업입니다.</p>
+
+    <article class="project">
+      <div class="body">
+        <div class="title-row">
+          <h3>Logitech</h3>
+          <span class="genre">하드웨어 연동 · 2026년 7월</span>
+          <span class="badge">공식 협업</span>
+        </div>
+        <p class="summary">
+          Logitech과 공식 협업으로 <b>MX Master 4 · Action Ring 연동</b> 작업을 진행했습니다.
+          게임 쪽(<b>MX4</b>)과 개발 도구 쪽(<b>LogiForUnity</b>), 두 갈래의 결과물이 나왔습니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            Logitech 플러그인은 Logi Plugin Service가 <b>.NET 8</b>로 로드하고, Unity는 Mono/IL2CPP
+            런타임입니다. 두 런타임을 한 프로세스에 억지로 합치는 대신 <b>프로세스를 나누고
+            loopback TCP로 연결</b>했습니다. 느슨한 결합이라 플러그인이 죽어도 게임 본체는 그대로 돌고,
+            반대로 플러그인은 Unity 버전에 묶이지 않습니다.
+          </p>
+        </div>
+
+        <ul class="points">
+          <li><b>MX4 · 게임</b> — 청소 시뮬레이터. Action Ring으로 도구를 전환하고 MX Master 4 햅틱으로 피드백을 받습니다. 게임이 loopback TCP 서버(52111)로 상태·이벤트를 보내면 플러그인이 링 디스플레이와 햅틱을 구동합니다.</li>
+          <li><b>LogiForUnity · 도구</b> — Unity <b>에디터</b>를 로지텍 디바이스로 조작하는 플러그인. 단축키를 보내는 데 그치지 않고, 동봉한 UPM 브릿지 패키지(<code>com.logi.unity-bridge</code>)를 프로젝트에 설치해 <code>EditorApplication</code>·<code>Tools</code>·<code>SceneView</code>·<code>Undo</code>를 <b>에디터 API로 직접</b> 호출합니다.</li>
+          <li><b>다이얼</b> — 선택한 오브젝트의 Transform(이동·회전·스케일), 씬 줌, 타임 스케일을 연속 값으로 조절하고 현재 값을 다이얼 옆에 표시합니다.</li>
+          <li><b>조용히 틀리지 않기</b> — 브릿지가 연결되지 않은 상태에서 브릿지 명령은 <b>아무것도 하지 않습니다</b>. 단축키로 몰래 대체하면 사용자의 Shortcut Manager 설정에 따라 엉뚱한 동작이 일어나기 때문입니다.</li>
+          <li>버튼 아트워크를 코드로 그리는 <b>벡터 아이콘</b>이라 크기와 무관하게 선명하고, 한국어 로컬라이제이션(<code>ko-KR</code>)을 포함합니다.</li>
+        </ul>
+
+        <div class="tags">
+          <span class="tag">.NET 8</span><span class="tag">Logi Plugin Service</span>
+          <span class="tag">Loupedeck SDK</span><span class="tag">UPM 패키지</span>
+          <span class="tag">TCP IPC</span><span class="tag">Unity Editor API</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="https://github.com/toflaks98229/LogiForUnity">LogiForUnity 소스 →</a>
+          <a class="btn" href="https://github.com/toflaks98229/MX4-core">MX4 소스 →</a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
 <section>
   <div class="wrap">
     <h2>More Projects</h2>
     <p class="section-lede">그 외 개인 프로젝트입니다.</p>
     <div class="misc">
+      <a href="https://github.com/toflaks98229/SRPG">
+        <b>SRPG</b>
+        <span>Bad North 계열 실시간 전술 프로토타입. 부대의 단련도·무기 숙련도·갑옷 상성, VContainer로 전역·캠페인·전투로 가른 수명, 직교 투영 픽셀 그리드 렌더링.</span>
+      </a>
+      <a href="https://github.com/toflaks98229/nethack-realtime">
+        <b>nethack-realtime</b>
+        <span>NetHack 5.0을 실시간으로 개조한 포크. 턴이 아니라 벽시계로 세계가 흘러, 키를 누르지 않아도 몬스터가 다가옵니다. C.</span>
+      </a>
+      <a href="https://github.com/toflaks98229/unity-csv-pipeline">
+        <b>unity-csv-pipeline</b>
+        <span>CSV를 저장하면 ScriptableObject 에셋으로 굽는 에디터 전용 UPM 패키지. 구글 시트 동기화, 참조가 남은 에셋은 지우지 않는 안전장치.</span>
+      </a>
       <a href="https://github.com/toflaks98229/ASCII">
         <b>ASCII</b>
         <span>ASCII 로그라이크. 섀도캐스팅 FOV, AP 턴 시스템, 고도 → 기후 → 바이옴 → 하천 침식 → 도로로 이어지는 절차적 월드 생성기.</span>
@@ -499,7 +618,10 @@
         <h4>엔진 · 언어</h4>
         <div class="tags">
           <span class="tag">Unity 2022.3 LTS</span><span class="tag">Unity 6</span>
-          <span class="tag">C#</span><span class="tag">HLSL</span><span class="tag">.NET 8</span>
+          <span class="tag">C#</span><span class="tag">C</span>
+          <span class="tag">HLSL</span><span class="tag">GLSL</span>
+          <span class="tag">.NET 8</span><span class="tag">Win32 API</span>
+          <span class="tag">OpenGL 3.3 Core</span>
         </div>
       </div>
       <div>
@@ -532,7 +654,8 @@
           <span class="tag">헝가리안 알고리즘</span><span class="tag">BSP 던전 생성</span>
           <span class="tag">셀룰러 오토마타</span><span class="tag">펄린 노이즈 지형</span>
           <span class="tag">섀도캐스팅 FOV</span><span class="tag">BFS 전파</span>
-          <span class="tag">유량 누적 하천 침식</span>
+          <span class="tag">유량 누적 하천 침식</span><span class="tag">귀 자르기 삼각분할</span>
+          <span class="tag">값 노이즈 / fbm</span><span class="tag">오더드 디더링</span>
         </div>
       </div>
       <div>
@@ -540,8 +663,47 @@
         <div class="tags">
           <span class="tag">ScriptableObject</span><span class="tag">CSV 임포터</span>
           <span class="tag">커스텀 에디터 툴</span><span class="tag">Addressables</span>
+          <span class="tag">UPM 패키지</span><span class="tag">핫 리로드</span>
           <span class="tag">Git</span>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="education">
+  <div class="wrap">
+    <h2>Education &amp; Activities</h2>
+    <div class="edu">
+      <div class="edu-when">2021 — 2022</div>
+      <div>
+        <h4>서울게임아카데미 · 게임엔진 응용 프로그래머 양성과정 이수</h4>
+        <p>C++ · C# 프로그래밍과 Unity, Unreal Engine 등 상용 엔진 기술을 다뤘습니다.</p>
+      </div>
+    </div>
+
+    <div class="edu">
+      <div class="edu-when">2025.01</div>
+      <div>
+        <h4>인디게임 예비창업 지원사업 · 개인 지원</h4>
+        <p>
+          한국콘텐츠진흥원 주관. 기획부터 구현, 에셋 활용, 사운드까지 1인 개발의 전 과정을 직접 진행했습니다.
+          다수의 개체가 대형을 이루고 유지하는 시스템이 가장 큰 과제였고, 이때의 고민이 이후
+          RTXX와 Sandland의 헝가리안 알고리즘 기반 대형 배정으로 이어졌습니다.
+        </p>
+      </div>
+    </div>
+
+    <div class="edu">
+      <div class="edu-when">2026</div>
+      <div>
+        <h4>메이플스토리 월드 해커톤 · 팀 메차수열 프로그래머</h4>
+        <p>2D 익스트랙션 게임 〈더 시드〉를 팀으로 개발했습니다.</p>
+        <ul class="points">
+          <li><b>형상 관리로 결과물을 지킴</b> — 대규모 자동 수정으로 다수 파일이 손상됐을 때, Git의 과거 커밋과 다른 PC에 남아 있던 수정 전 파일을 대조·머지해 이전 상태를 복원했습니다.</li>
+          <li><b>컴포넌트 누락 커밋 대응</b> — 지속형 오브젝트를 커밋하면 컴포넌트가 빠지는 현상을 파악하고, 문제되는 코드만 골라 부분 커밋하는 방식으로 손상을 막았습니다.</li>
+          <li><b>범위 판단</b> — 팀이 처음 잡은 레퍼런스(〈클레트카〉)가 해커톤 기간에 비해 무겁다고 보고 〈리스크 오브 레인〉으로 전환을 제안했습니다. 익스트랙션 특유의 재미는 살리면서 구현 부담은 낮추는 절충안이었고, 제안이 받아들여져 기간 안에 완성했습니다.</li>
+        </ul>
       </div>
     </div>
   </div>
