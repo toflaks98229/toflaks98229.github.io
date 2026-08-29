@@ -199,11 +199,6 @@
           </p>
         </div>
 
-        <ul class="points">
-          <li><b>절차적 머티리얼</b> — 벽돌·타일·나무·대리석을 프래그먼트 셰이더가 UV에서 계산합니다. 해상도가 없으니 코앞에 붙어도 선명하고, 256KB 텍스처 대신 유니폼 네 개만 씁니다.</li>
-          <li><b>광택은 알파 채널에</b> — 텍스처가 이미 RGBA인데 알파를 쓰지 않고 있었습니다. 거기에 gloss를 태워 픽셀당 스페큘러를 <b>텍스처도 샘플러도 늘리지 않고</b> 얻었습니다.</li>
-          <li><b>레벨 저작</b> — 섹터 방식과 TrenchBroom 브러시를 한 에피소드 안에서 섞어 씁니다. 개발 빌드는 <code>assets\</code>를 저장할 때마다 핫 리로드하고, 배포 빌드는 같은 에셋을 컴파일 시점에 구워 넣습니다.</li>
-        </ul>
 
         <div class="tags">
           <span class="tag">C</span><span class="tag">Win32 API</span>
@@ -241,13 +236,6 @@
           </p>
         </div>
 
-        <ul class="points">
-          <li><b>적 AI</b> — 유틸리티 판단과 <b>영향력 맵</b>으로 목표를 고릅니다. 개별 병사가 아니라 <b>부대 단위</b>로 표적을 잡아, 적이 전선을 보고 움직입니다.</li>
-          <li><b>지형 생성</b> — 침식을 먼저 돌리고 타일은 그 결과를 읽기만 합니다. 순서를 뒤집으니 각진 사각형 대신 계곡과 초크포인트가 있는 전술 지형이 나옵니다.</li>
-          <li><b>병과 상성</b> — 창병 방어선과 방패 역학, 근접병의 대열 이탈과 도약 공격. 교전이 끝나면 무너진 진형을 복구합니다.</li>
-          <li><b>부대 성장</b> — 단련도 · 무기 숙련도 · 갑옷 상성이 누적되고, 출진 편성에서 어느 부대를 내보낼지 고릅니다.</li>
-          <li><b>2.5D 렌더링</b> — 직교 투영으로 픽셀 격자를 온전히 유지하고, 빌보드 유닛에 외곽선 · 경계 음영 · 색상 제한을 걸어 지형 판독성을 확보했습니다.</li>
-        </ul>
 
         <div class="tags">
           <span class="tag">Unity 6</span><span class="tag">URP</span>
@@ -289,12 +277,6 @@
           </p>
         </div>
 
-        <ul class="points">
-          <li><b>Strategy 패턴 맵 생성</b> — BSP 던전 / 셀룰러 오토마타 동굴 / 펄린 노이즈 지형을 같은 인터페이스로 교체합니다.</li>
-          <li><b>타일별 조명</b> — 거리 감쇠 + 브레젠험 직선으로 벽 차폐를 계산해 문자 단위로 밝기를 입힙니다.</li>
-          <li><b>성능</b> — 5000 슬롯 파티클 풀, 적 탐색용 <code>SpatialHashGrid</code>, Pub-Sub <code>EventManager</code>.</li>
-          <li><b>데이터 드리븐</b> — 바이옴·물질·파티클을 CSV로 정의하고 에디터 임포터가 ScriptableObject로 변환합니다.</li>
-        </ul>
 
         <div class="tags">
           <span class="tag">Unity 2022.3</span><span class="tag">TextMeshPro</span>
@@ -331,12 +313,6 @@
           </p>
         </div>
 
-        <ul class="points">
-          <li><b>DOTS 병렬화</b> — 부대/유닛/전투/애니메이션/스탯/대형 갱신을 전부 <code>[BurstCompile] IJobParallelFor</code>로 처리하고, 지형 접지 판정은 <code>RaycastCommand</code>로 배치 처리합니다.</li>
-          <li><b>중앙 집중 업데이트 루프</b> — 모든 MonoBehaviour를 비활성화하고 <code>Controller</code>가 <code>_Update()</code>를 직접 호출합니다. Unity의 <code>Update()</code> 호출 오버헤드를 줄이기 위한 구조입니다.</li>
-          <li><b>각도 기반 전투</b> — 정면 피격에는 방어력·방패가 100%, 측후면에는 50%만 적용됩니다. 측면 공격이 전술적 의미를 갖습니다.</li>
-          <li>3초간 교전이 없으면 <b>자동 재정렬</b>로 무너진 대형을 복구합니다.</li>
-        </ul>
 
         <div class="tags">
           <span class="tag">Unity 2022.3</span><span class="tag">URP</span>
@@ -377,11 +353,6 @@
           </p>
         </div>
 
-        <ul class="points">
-          <li><b>무한 도로 스트리밍</b> — <code>RoadManager</code>가 도로 세그먼트를 앞쪽에 생성하고 뒤쪽을 회수해, 끝없이 이어지는 밤길을 만듭니다.</li>
-          <li><b>퇴치 판정</b> — 마우스 좌클릭으로 앙크를 충전하고 <code>SphereCast</code>로 달라붙은 귀신을 맞힙니다.</li>
-          <li><b>레트로 렌더링</b> — 커스텀 URP 렌더러 피처로 픽셀화, 팔레트 색상 양자화, 디더링을 적용했습니다.</li>
-        </ul>
 
         <div class="tags">
           <span class="tag">Unity 2022.3</span><span class="tag">WheelCollider</span>
@@ -417,11 +388,6 @@
           </p>
         </div>
 
-        <ul class="points">
-          <li><b>구체 스캔 시스템</b> — 스캔 범위가 구체로 퍼져나가며 아이템과 적을 태깅합니다.</li>
-          <li><b>무기 / 투사체</b> — 머신건·미사일·레이저, 탄도 및 유도 투사체, 오브젝트 풀링.</li>
-          <li><b>관제 UI</b> — 레이더, 고도계, 나침반, 드론 상태, 아이템 관리 패널을 모니터 안에 구현.</li>
-        </ul>
 
         <div class="tags">
           <span class="tag">Unity 2022.3</span><span class="tag">NavMesh</span>
@@ -455,11 +421,6 @@
             속도가 끊기지 않게 했습니다.
           </p>
         </div>
-        <ul class="points">
-          <li><b>데이터 드리븐 무기</b> — <code>WeaponData</code>를 ScriptableObject로 두고 투사체 / 히트스캔 / 근접 / 차지 공격을 조합합니다.</li>
-          <li><b>적 AI</b> — Idle / Chase / Attack / Reposition FSM에 4가지 행동 타입, NavMesh 이동.</li>
-          <li><b>아레나 구조</b> — 게이트·열쇠, 픽업, 함정, 오브젝트 풀링, 스탯 수정자 시스템.</li>
-        </ul>
         <div class="tags">
           <span class="tag">Unity 2022.3</span><span class="tag">URP Renderer Feature</span>
           <span class="tag">ScriptableObject</span><span class="tag">NavMesh</span>
@@ -495,11 +456,6 @@
           </p>
         </div>
 
-        <ul class="points">
-          <li><b>노즐 반경에서 수압 파생</b> — 수압을 별도로 조절하지 않고 <code>pressure = (기준반경 / 노즐반경)^감쇠</code>로 계산합니다. 좁은 노즐은 강하고 좁게, 넓은 노즐은 약하고 넓게 작용해 <b>범위와 세기의 트레이드오프</b>가 생깁니다.</li>
-          <li><b>연속 스트로크</b> — 프레임 사이 마우스 이동 거리를 보간해 스탬프를 여러 번 찍습니다.</li>
-          <li><b>게임 ↔ 플러그인 연동</b> — 게임이 loopback TCP 서버(52111)로 상태·이벤트를 전송하고, 별도 .NET 8 Loupedeck 플러그인이 이를 받아 링 디스플레이와 햅틱을 구동합니다.</li>
-        </ul>
 
         <div class="tags">
           <span class="tag">Unity 6</span><span class="tag">HLSL</span>
@@ -539,12 +495,6 @@
           </p>
         </div>
 
-        <ul class="points">
-          <li><b>마인드 스페이스</b> — 수집한 단서를 연결해 레시피와 매칭하면 추론이 성립하고 진행도·카드가 해금됩니다.</li>
-          <li><b>스텔스</b> — 시야 감지와 <b>소음 전파</b> 기반 청각 감지의 2채널 구조. 몬스터 AI는 Idle/Patrol/Chase/Attack/Investigate/Distracted FSM입니다.</li>
-          <li><b>카드 시스템</b> — Strategy 패턴으로 즉발/투척/설치를 분리하고, 손패 UI는 MVVM으로 구성했습니다.</li>
-          <li><b>물리 인벤토리</b> — 가방 안에서 아이템이 물리적으로 움직이며, 마우스로 집어 옮길 수 있습니다.</li>
-        </ul>
 
         <div class="tags">
           <span class="tag">Unity 6</span><span class="tag">VContainer (DI)</span>
@@ -659,6 +609,7 @@
         <div class="tags">
           <span class="tag">URP</span><span class="tag">커스텀 Renderer Feature</span>
           <span class="tag">RenderTexture</span><span class="tag">AsyncGPUReadback</span>
+          <span class="tag">빌보드 렌더링</span><span class="tag">직교 투영 픽셀 퍼펙트</span>
           <span class="tag">TextMeshPro</span>
         </div>
       </div>
@@ -676,6 +627,14 @@
           <span class="tag">VContainer (DI)</span><span class="tag">이벤트 버스</span>
           <span class="tag">FSM</span><span class="tag">Strategy</span>
           <span class="tag">MVVM</span><span class="tag">Pub-Sub</span>
+          <span class="tag">어셈블리 분리</span><span class="tag">중앙 틱 루프</span>
+        </div>
+      </div>
+      <div>
+        <h4>AI · 내비게이션</h4>
+        <div class="tags">
+          <span class="tag">NavMesh</span><span class="tag">유틸리티 AI</span>
+          <span class="tag">영향력 맵</span><span class="tag">소음 전파 감지</span>
         </div>
       </div>
       <div>
@@ -686,6 +645,7 @@
           <span class="tag">섀도캐스팅 FOV</span><span class="tag">BFS 전파</span>
           <span class="tag">유량 누적 하천 침식</span><span class="tag">귀 자르기 삼각분할</span>
           <span class="tag">값 노이즈 / fbm</span><span class="tag">오더드 디더링</span>
+          <span class="tag">브레젠험 직선</span>
         </div>
       </div>
       <div>
@@ -694,6 +654,7 @@
           <span class="tag">ScriptableObject</span><span class="tag">CSV 임포터</span>
           <span class="tag">커스텀 에디터 툴</span><span class="tag">Addressables</span>
           <span class="tag">UPM 패키지</span><span class="tag">핫 리로드</span>
+          <span class="tag">TrenchBroom</span><span class="tag">EditMode / PlayMode 테스트</span>
           <span class="tag">Git</span>
         </div>
       </div>
