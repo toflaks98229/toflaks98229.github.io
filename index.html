@@ -210,48 +210,16 @@
       </div>
     </article>
 
-    <!-- ProjectCB -->
-    <article class="project">
-      <div class="body">
-        <div class="title-row">
-          <h3>ProjectCB</h3>
-          <span class="genre">대규모 전장 액션 · Mount &amp; Blade 계열</span>
-          <span class="badge">개발 중 · 비공개</span>
-        </div>
-        <p class="summary">
-          <b>1,000 대 1,000</b> 규모의 야전과 공성에서, 한 명의 영웅으로 직접 싸우면서
-          동시에 아군 부대를 지휘하는 게임. 근접·원거리·기마 전투와 진형 명령이 한 화면에서 맞물립니다.
-        </p>
-
-        <div class="highlight">
-          <span class="label">핵심 문제</span>
-          <p>
-            적 사령관 AI는 "잘 싸우는지"를 눈으로 판단할 수 없습니다. 그래서 판단을
-            <b>전장 평가 → 자세와 주공 축 → 역할과 패턴</b>의 단계로 쪼개고,
-            <b>8축 검증 하네스</b>를 따로 만들었습니다. 조합 매트릭스와 성격 리그를 배치 실행으로 돌려
-            난이도별 패턴과 평가 오차를 수치로 비교합니다. 전투 시간은 첫 사상자부터 결판까지로 재어,
-            200 대 200에서 5~8분이 나오도록 맞췄습니다.
-          </p>
-        </div>
-
-        <div class="tags">
-          <span class="tag">Unity</span><span class="tag">어셈블리 분리</span>
-          <span class="tag">사령관 AI</span><span class="tag">사기 · 궤주</span>
-          <span class="tag">검증 하네스</span><span class="tag">기마 전투</span>
-          <span class="tag">EditMode 테스트</span>
-        </div>
-      </div>
-    </article>
-
     <!-- SFPS -->
     <article class="project">
       <div class="shot">
-        <div class="placeholder"><b>▦</b>영상 · 스크린샷 자리<br>assets/sfps.png</div>
+        <img class="still" src="assets/sfps.jpg"
+             alt="SFPS 웹 빌드 플레이 화면 — 돌 던전 통로와 마법진 무기, 체력·탄약 HUD">
       </div>
       <div class="body">
         <div class="title-row">
           <h3>SFPS</h3>
-          <span class="genre">부머 슈터 · 자체 엔진</span>
+          <span class="genre">부머 슈터 · 자체 엔진 · 〈마법소녀 대소동〉</span>
           <span class="badge">C · 엔진 직접 구현</span>
         </div>
         <p class="summary">
@@ -266,7 +234,8 @@
             <b>에셋을 파일이 아니라 텍스트 레시피로 두는 것</b>이었습니다. 텍스처·모델·스프라이트·사운드가
             전부 정수 텍스트로 기술돼 실행 시점에 생성됩니다. 모델은 <b>2D 외곽선과 두께</b>만 주면 엔진이
             돌출시키고 귀 자르기로 삼각분할하며, UV는 그 과정에서 저절로 나와 <b>언랩할 것이 없습니다</b>.
-            현재 411,648 / 1,474,560 바이트로 예산의 27.9%를 씁니다.
+            현재 1,055,744 / 1,474,560 바이트로 예산의 71.6%를 씁니다.
+            같은 C 코드를 WebAssembly로 빌드해 <b>브라우저에서도 그대로 돌아갑니다</b> — 전송량 864KB.
           </p>
         </div>
 
@@ -277,6 +246,7 @@
           <span class="tag">절차적 생성</span><span class="tag">핫 리로드</span>
         </div>
         <div class="cta">
+          <a class="btn primary" href="https://toflaks98229.github.io/SFPS/">웹에서 플레이 →</a>
           <a class="btn" href="https://github.com/toflaks98229/SFPS">소스 보기 →</a>
         </div>
       </div>
@@ -317,46 +287,6 @@
         <div class="cta">
           <a class="btn" href="https://github.com/toflaks98229/SRPG">소스 보기 →</a>
           <a class="btn" href="https://youtu.be/0ayenb_ujhg">유튜브에서 보기</a>
-        </div>
-      </div>
-    </article>
-
-    <!-- ASCIIROG -->
-    <article class="project">
-      <div class="shot" data-yt="OIBtsfVkd5g" data-title="ASCIIROG 플레이 영상"></div>
-      <div class="vidtabs" data-for="OIBtsfVkd5g">
-        <button data-yt="OIBtsfVkd5g" aria-pressed="true">영상 1 · 시뮬레이션</button>
-        <button data-yt="0_NBunXh-W8" aria-pressed="false">영상 2 · 플레이</button>
-      </div>
-      <div class="body">
-        <div class="title-row">
-          <h3>ASCIIROG</h3>
-          <span class="genre">ASCII 로그라이크</span>
-        </div>
-        <p class="summary">
-          <code>@</code>, <code>#</code>, <code>.</code> 문자로 그려지는 턴제 로그라이크.
-          고전 로그라이크 규칙 위에 <b>물리·열역학 시뮬레이션 레이어</b>를 얹었습니다.
-        </p>
-
-        <div class="highlight">
-          <span class="label">핵심 문제</span>
-          <p>
-            환경 상호작용을 정해진 연출로 재생하지 않습니다. 대신 <b>모든 타일에 물질·상태·온도를 부여</b>해
-            규칙끼리 부딪히게 했습니다. 불은 가연성 타일을 따라 번지고, 기름에 옮겨붙으면 폭발하며,
-            물은 얼거나 끓어 증기가 됩니다. 번개는 <b>BFS로 전도성·젖은 타일을 타고 전파</b>됩니다.
-            미리 설계하지 않은 조합까지 저절로 성립합니다.
-          </p>
-        </div>
-
-
-        <div class="tags">
-          <span class="tag">Unity 2022.3</span><span class="tag">TextMeshPro</span>
-          <span class="tag">Strategy 패턴</span><span class="tag">BFS 전파</span>
-          <span class="tag">셀룰러 오토마타</span>
-        </div>
-        <div class="cta">
-          <a class="btn" href="https://github.com/toflaks98229/ASCIIROG">소스 보기 →</a>
-          <a class="btn" href="https://youtu.be/OIBtsfVkd5g">유튜브에서 보기</a>
         </div>
       </div>
     </article>
@@ -640,17 +570,9 @@
         <b>WebRTS · 용병단</b>
         <span>Battle Brothers 계열 웹 게임. 캠페인 지도와 헥스 전술 전투, 전투가 끝나도 남는 부상. 빌드 도구 없이 순수 ES 모듈 + Canvas 2D, DCSS CC0 타일에 출처 표기를 자동 생성합니다.</span>
       </a>
-      <a href="https://github.com/toflaks98229/nethack-realtime">
-        <b>nethack-realtime</b>
-        <span>NetHack 5.0을 실시간으로 개조한 포크. 턴이 아니라 벽시계로 세계가 흘러, 키를 누르지 않아도 몬스터가 다가옵니다. C.</span>
-      </a>
       <a href="https://github.com/toflaks98229/unity-csv-pipeline">
         <b>unity-csv-pipeline</b>
         <span>CSV를 저장하면 ScriptableObject 에셋으로 굽는 에디터 전용 UPM 패키지. 구글 시트 동기화, 참조가 남은 에셋은 지우지 않는 안전장치.</span>
-      </a>
-      <a href="https://github.com/toflaks98229/ASCII">
-        <b>ASCII</b>
-        <span>ASCII 로그라이크. 섀도캐스팅 FOV, AP 턴 시스템, 고도 → 기후 → 바이옴 → 하천 침식 → 도로로 이어지는 절차적 월드 생성기.</span>
       </a>
       <a href="https://github.com/toflaks98229/JPNGame">
         <b>JPNGame</b>
@@ -723,9 +645,7 @@
       <div>
         <h4>직접 구현한 알고리즘</h4>
         <div class="tags">
-          <span class="tag">헝가리안 알고리즘</span><span class="tag">BSP 던전 생성</span>
-          <span class="tag">셀룰러 오토마타</span><span class="tag">펄린 노이즈 지형</span>
-          <span class="tag">섀도캐스팅 FOV</span><span class="tag">BFS 전파</span>
+          <span class="tag">헝가리안 알고리즘</span><span class="tag">펄린 노이즈 지형</span>
           <span class="tag">유량 누적 하천 침식</span><span class="tag">귀 자르기 삼각분할</span>
           <span class="tag">값 노이즈 / fbm</span><span class="tag">오더드 디더링</span>
           <span class="tag">브레젠험 직선</span><span class="tag">부호거리장 / 서피스넷</span>

@@ -124,7 +124,7 @@
       <dl class="skill"><dt>성능</dt><dd>DOTS / Burst, Job System, RaycastCommand, 오브젝트 풀링, 공간 해시 그리드</dd></dl>
       <dl class="skill"><dt>AI · 내비</dt><dd>NavMesh, 유틸리티 AI, 영향력 맵, 소음 전파 감지</dd></dl>
       <dl class="skill"><dt>워크플로</dt><dd>ScriptableObject, CSV 임포터, 커스텀 에디터 툴, Addressables, UPM 패키지, EditMode / PlayMode 테스트, Blender 파이썬 툴체인, 검증 하네스, Git</dd></dl>
-      <dl class="skill"><dt>알고리즘</dt><dd>헝가리안 알고리즘, 부호거리장 / 서피스넷, 보로노이 분할, BSP 던전, 셀룰러 오토마타, 펄린 노이즈, 섀도캐스팅 FOV, BFS 전파, 유량 누적 하천 침식, 귀 자르기 삼각분할, 오더드 디더링</dd></dl>
+      <dl class="skill"><dt>알고리즘</dt><dd>헝가리안 알고리즘, 부호거리장 / 서피스넷, 보로노이 분할, 펄린 노이즈, 유량 누적 하천 침식, 귀 자르기 삼각분할, 오더드 디더링</dd></dl>
       <dl class="skill"><dt>HW 연동</dt><dd>Logi Plugin Service, Loupedeck SDK, Unity Editor API, TCP IPC, XLIFF 로컬라이제이션</dd></dl>
     </div>
   </section>
@@ -150,31 +150,16 @@
 
     <div class="proj">
       <div class="ptop">
-        <h3>ProjectCB</h3><span class="genre">대규모 전장 액션 · Mount &amp; Blade 계열</span>
-        <span class="badge">개발 중</span>
-      </div>
-      <p class="psum"><b>1,000 대 1,000</b> 규모의 야전과 공성에서, 한 명의 영웅으로 직접 싸우면서
-        동시에 아군 부대를 지휘하는 게임.</p>
-      <ul class="pts">
-        <li>적 사령관 AI는 "잘 싸우는지"를 눈으로 판단할 수 없어, 판단을 <b>전장 평가 → 자세와 주공 축 → 역할과 패턴</b>으로 쪼개고 <b>8축 검증 하네스</b>를 따로 만들었습니다. 조합 매트릭스와 성격 리그를 배치 실행으로 돌려 난이도별 패턴과 평가 오차를 수치로 비교합니다.</li>
-        <li>전투 시간을 첫 사상자부터 결판까지로 재어 200 대 200에서 <b>5~8분</b>이 나오도록 맞췄습니다.</li>
-        <li>근접 · 원거리 · 기마 전투와 사기 · 궤주 · 재집결, 지휘 공백과 승계가 한 전장에서 맞물립니다. 어셈블리를 <code>Core / Data / Framework / Gameplay / UI / DevHarness</code>로 갈랐습니다.</li>
-      </ul>
-      <p class="stack">Unity · 어셈블리 분리 · 사령관 AI · 사기 · 궤주 · 검증 하네스 · EditMode 테스트</p>
-    </div>
-
-    <div class="proj">
-      <div class="ptop">
         <h3>SFPS</h3><span class="genre">부머 슈터 · 자체 엔진</span>
         <span class="badge">엔진 직접 구현</span>
-        <a class="repo" href="https://github.com/toflaks98229/SFPS">github.com/toflaks98229/SFPS</a>
+        <a class="repo" href="https://toflaks98229.github.io/SFPS/">웹 플레이 · toflaks98229.github.io/SFPS</a>
       </div>
       <p class="psum"><b>1.44MB 플로피 한 장에 들어가는 3D FPS.</b> 단일 <code>.exe</code>이고 에셋 파일이 하나도 없습니다.
         상용 엔진 없이 Win32와 OpenGL 3.3 코어만으로 <b>엔진부터 C로 직접 작성</b>했습니다.</p>
       <ul class="pts">
         <li>1,474,560바이트 예산의 답을 압축이 아니라 <b>에셋을 파일이 아니라 정수 텍스트 레시피로 두는 것</b>에서 찾았습니다. 텍스처 · 모델 · 스프라이트 · 사운드가 전부 실행 시점에 생성됩니다.</li>
         <li>모델은 <b>2D 외곽선과 두께</b>만 주면 엔진이 돌출시키고 귀 자르기로 삼각분할하며, UV가 그 과정에서 저절로 나와 <b>언랩할 것이 없습니다</b>.</li>
-        <li>현재 <b>411,648 / 1,474,560 바이트</b> — 예산의 27.9% 사용.</li>
+        <li>현재 <b>1,055,744 / 1,474,560 바이트</b> — 예산의 71.6% 사용. 같은 C 코드를 WebAssembly로 빌드해 <b>브라우저에서도 그대로 돌아갑니다</b> (전송량 864KB).</li>
       </ul>
       <p class="stack">C · Win32 API · OpenGL 3.3 Core · GLSL · 절차적 생성 · 핫 리로드</p>
     </div>
@@ -207,21 +192,6 @@
         <li>피격 각도에 따라 방어력과 방패 효율이 달라져, 미리 짜둔 연출 없이도 <b>측면 기동이 전술적 의미</b>를 갖습니다.</li>
       </ul>
       <p class="stack">Unity 2022.3 · URP · DOTS / Burst · Job System · 헝가리안 알고리즘</p>
-    </div>
-
-    <div class="proj">
-      <div class="ptop">
-        <h3>ASCIIROG</h3><span class="genre">ASCII 로그라이크</span>
-        <a class="repo" href="https://github.com/toflaks98229/ASCIIROG">github.com/toflaks98229/ASCIIROG</a>
-      </div>
-      <p class="psum"><code>@</code>, <code>#</code>, <code>.</code> 문자로 그려지는 턴제 로그라이크.
-        고전 로그라이크 규칙 위에 <b>물리 · 열역학 시뮬레이션 레이어</b>를 얹었습니다.</p>
-      <ul class="pts">
-        <li>환경 상호작용을 정해진 연출로 재생하지 않습니다. 대신 <b>모든 타일에 물질 · 상태 · 온도를 부여</b>해 규칙끼리 부딪히게 했습니다.</li>
-        <li>불은 가연성 타일을 따라 번지고 기름에 옮겨붙으면 폭발하며, 물은 얼거나 끓어 증기가 됩니다. 번개는 <b>BFS로 전도성 · 젖은 타일을 타고 전파</b>됩니다.</li>
-        <li>미리 설계하지 않은 조합까지 저절로 성립하는 <b>창발형 플레이</b>가 나옵니다.</li>
-      </ul>
-      <p class="stack">Unity 2022.3 · TextMeshPro · Strategy 패턴 · BFS 전파 · 셀룰러 오토마타</p>
     </div>
 
     <div class="proj">
@@ -353,9 +323,7 @@
     <h2>More Projects</h2>
     <p class="more">
       <b>WebRTS · 용병단</b> — Battle Brothers 계열 웹 게임. 캠페인 지도와 헥스 전술 전투, 전투가 끝나도 남는 부상. 빌드 도구 없이 순수 ES 모듈 + Canvas 2D. ·
-      <b>nethack-realtime</b> — NetHack 5.0을 실시간으로 개조한 포크. 턴이 아니라 벽시계로 세계가 흘러, 키를 누르지 않아도 몬스터가 다가옵니다 (C). ·
       <b>unity-csv-pipeline</b> — CSV를 저장하면 ScriptableObject 에셋으로 굽는 에디터 전용 UPM 패키지. 구글 시트 동기화, 참조가 남은 에셋은 지우지 않는 안전장치. ·
-      <b>ASCII</b> — 섀도캐스팅 FOV, AP 턴 시스템, 고도 → 기후 → 바이옴 → 하천 침식 → 도로로 이어지는 절차적 월드 생성기. ·
       <b>JPNGame</b> — 일본어 조사(は/が/を) 학습 게임. CSV → ScriptableObject 파이프라인. ·
       <b>runMiyabirun</b> — 3D 엔드리스 러너. 무한 타일 생성, 지형 상호작용 인터페이스. ·
       <b>magic-shooter</b> — 자바스크립트 슈팅 게임. 스프라이트 시트 에디터를 직접 구현해 포함.
