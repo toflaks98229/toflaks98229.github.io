@@ -12,7 +12,7 @@
 | Sandland | ✅ 유튜브 영상 1개 |
 | 0MOJEON | ✅ 유튜브 영상 1개 |
 | SRPG | ✅ 유튜브 영상 1개 |
-| SFPS | ✅ `sfps.jpg` — 웹 빌드에서 직접 캡처한 플레이 화면 |
+| 마법소녀 대소동 (SFPS) | ✅ `sfps.jpg` — 웹 빌드에서 직접 캡처한 플레이 화면 |
 | **RTXX** | ⬜ **비어 있음** — `rtxx.png` 필요 |
 | MX4 | ✅ `mx4-logitech.jpg` — UNITE Seoul 로지텍 부스 현장 (타인 명찰 가림) |
 | **SCPPJ** | ⬜ **비어 있음** — `scppj.png` 필요 |
