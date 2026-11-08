@@ -1,0 +1,372 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>정재헌 — Unity 게임 프로그래머 이력서</title>
+<style>
+  @page { size: A4; margin: 13mm 13mm 12mm; }
+
+  :root{
+    --ink:#191817; --muted:#6a665e; --line:#dedad3; --accent:#a83f1b;
+    --soft:#fbf3ee; --code:#f2efea;
+    --mono:"Consolas","SF Mono",Menlo,monospace;
+    --sans:"Pretendard","Malgun Gothic","맑은 고딕",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:var(--sans); color:var(--ink); background:#fff;
+    font-size:9.6pt; line-height:1.62; letter-spacing:-.01em;
+  }
+  .page{max-width:184mm;margin:0 auto}
+
+  /* ── 헤더 ── */
+  .head{display:flex;align-items:flex-end;justify-content:space-between;
+        gap:16px;padding-bottom:9px;border-bottom:2px solid var(--ink)}
+  .head .who h1{margin:0;font-size:22pt;line-height:1.1;letter-spacing:-.03em}
+  .head .who .role{margin:5px 0 0;font-family:var(--mono);font-size:8.4pt;
+                   letter-spacing:.09em;text-transform:uppercase;color:var(--accent)}
+  .head .contact{text-align:right;font-size:8.6pt;color:var(--muted);line-height:1.75;white-space:nowrap}
+  .head .contact b{color:var(--ink);font-weight:600}
+  .head .contact a{color:var(--muted);text-decoration:none}
+
+  .lede{margin:11px 0 0;font-size:9.8pt;color:var(--ink);line-height:1.65}
+  .lede b{color:var(--accent);font-weight:600}
+
+  /* ── 섹션 ── */
+  section{margin-top:15px}
+  h2{margin:0 0 8px;font-family:var(--mono);font-size:8.2pt;letter-spacing:.11em;
+     text-transform:uppercase;color:var(--muted);font-weight:700;
+     padding-bottom:4px;border-bottom:1px solid var(--line);
+     break-after:avoid;page-break-after:avoid}
+
+  /* ── 기술 스택 ── */
+  .skills{column-count:2;column-gap:22px}
+  .skill{display:grid;grid-template-columns:58px 1fr;gap:8px;align-items:baseline;
+         margin:0;padding:2px 0;font-size:8.7pt;break-inside:avoid}
+  .skill dt{font-weight:700;color:var(--accent);font-size:8.4pt}
+  .skill dd{margin:0;color:var(--muted);line-height:1.5}
+
+  /* ── 프로젝트 ── */
+  .proj{padding:9px 0;border-bottom:1px solid var(--line);break-inside:avoid;page-break-inside:avoid}
+  .proj:last-child{border-bottom:0}
+  .ptop{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap}
+  .ptop h3{margin:0;font-size:12pt;letter-spacing:-.02em}
+  .ptop .genre{font-size:8.6pt;color:var(--muted)}
+  .ptop .badge{font-family:var(--mono);font-size:7.4pt;padding:1px 6px;border-radius:3px;
+               background:var(--soft);color:var(--accent);border:1px solid #eddcd3}
+  .ptop .repo{margin-left:auto;font-family:var(--mono);font-size:7.6pt;color:var(--muted);
+              text-decoration:none;white-space:nowrap}
+  .psum{margin:4px 0 5px;font-size:9.1pt;color:var(--muted);line-height:1.55}
+  .psum b{color:var(--ink);font-weight:600}
+  ul.pts{margin:0;padding-left:13px;font-size:9.1pt;line-height:1.55}
+  ul.pts li{margin-bottom:2.5px}
+  ul.pts li::marker{color:var(--accent)}
+  ul.pts b{font-weight:600}
+  code{font-family:var(--mono);font-size:.87em;background:var(--code);padding:0 3px;border-radius:2px}
+  .stack{margin:5px 0 0;font-family:var(--mono);font-size:7.6pt;color:var(--muted);letter-spacing:.01em}
+
+  .more{margin:0;font-size:8.7pt;color:var(--muted);line-height:1.75}
+  .more b{color:var(--ink);font-weight:600}
+
+  /* ── 교육/활동 ── */
+  .edu{display:grid;grid-template-columns:76px 1fr;gap:10px;padding:5px 0;
+       border-bottom:1px solid var(--line);break-inside:avoid}
+  .edu:last-child{border-bottom:0}
+  .edu .when{font-family:var(--mono);font-size:8pt;color:var(--accent);padding-top:2px}
+  .edu h4{margin:0;font-size:9.6pt;font-weight:600}
+  .edu .sub{font-weight:400;color:var(--muted);font-size:8.6pt}
+  .edu p{margin:2px 0 0;font-size:8.8pt;color:var(--muted);line-height:1.55}
+  .edu ul{margin:3px 0 0;padding-left:13px;font-size:8.8pt;color:var(--muted);line-height:1.5}
+  .edu ul li{margin-bottom:1.5px}
+  .edu ul li::marker{color:var(--accent)}
+  .edu ul b{color:var(--ink);font-weight:600}
+
+  .foot{margin-top:14px;padding-top:7px;border-top:1px solid var(--line);
+        font-size:8pt;color:var(--muted);display:flex;justify-content:space-between;gap:12px}
+  .foot a{color:var(--muted);text-decoration:none}
+
+  @media screen{
+    body{background:#e8e5e0;padding:24px 0}
+    .page{background:#fff;padding:15mm;box-shadow:0 2px 18px rgba(0,0,0,.13);max-width:210mm}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="head">
+    <div class="who">
+      <h1>정재헌</h1>
+      <p class="role">Unity Game Programmer</p>
+    </div>
+    <div class="contact">
+      <b>010-2333-9248</b><br>
+      jeje092389@naver.com<br>
+      <a href="https://github.com/toflaks98229">github.com/toflaks98229</a> ·
+      <a href="https://toflaks98229.github.io">toflaks98229.github.io</a>
+    </div>
+  </div>
+
+  <p class="lede">
+    <b>시스템 설계와 시뮬레이션</b>을 중심으로 게임을 만듭니다. 정해진 연출을 재생하는 대신 규칙끼리 부딪히게 해
+    상황이 스스로 만들어지도록 설계하고, 필요한 알고리즘은 라이브러리를 찾기보다 <b>직접 구현</b>합니다.
+    상용 엔진 없이 C로 엔진을 작성한 프로젝트부터 Logitech과의 공식 하드웨어 연동 협업까지,
+    <b>대부분의 프로젝트 소스를 공개</b>하고 있습니다.
+  </p>
+
+  <section>
+    <h2>Technical Skills</h2>
+    <div class="skills">
+      <dl class="skill"><dt>엔진 · 언어</dt><dd>Unity 6 / 2022.3 LTS, C#, C, HLSL, GLSL, .NET 8, Win32 API, OpenGL 3.3 Core</dd></dl>
+      <dl class="skill"><dt>렌더링</dt><dd>URP, 커스텀 Renderer Feature, RenderTexture, AsyncGPUReadback, 빌보드, 픽셀 퍼펙트</dd></dl>
+      <dl class="skill"><dt>아키텍처</dt><dd>VContainer (DI), 이벤트 버스, 어셈블리 분리, FSM, Strategy, MVVM, 중앙 틱 루프</dd></dl>
+      <dl class="skill"><dt>성능</dt><dd>DOTS / Burst, Job System, RaycastCommand, 오브젝트 풀링, 공간 해시 그리드</dd></dl>
+      <dl class="skill"><dt>AI · 내비</dt><dd>NavMesh, 유틸리티 AI, 영향력 맵, 소음 전파 감지</dd></dl>
+      <dl class="skill"><dt>워크플로</dt><dd>ScriptableObject, CSV 임포터, 커스텀 에디터 툴, Addressables, UPM 패키지, EditMode / PlayMode 테스트, Blender 파이썬 툴체인, 검증 하네스, Git</dd></dl>
+      <dl class="skill"><dt>알고리즘</dt><dd>헝가리안 알고리즘, 부호거리장 / 서피스넷, 보로노이 분할, BSP 던전, 셀룰러 오토마타, 펄린 노이즈, 섀도캐스팅 FOV, BFS 전파, 유량 누적 하천 침식, 귀 자르기 삼각분할, 오더드 디더링</dd></dl>
+      <dl class="skill"><dt>HW 연동</dt><dd>Logi Plugin Service, Loupedeck SDK, Unity Editor API, TCP IPC, XLIFF 로컬라이제이션</dd></dl>
+    </div>
+  </section>
+
+  <section>
+    <h2>Selected Projects</h2>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>THACPJ</h3><span class="genre">고속 메카 액션 · 오픈월드</span>
+        <span class="badge">개발 중</span>
+        <a class="repo" href="https://youtu.be/3jGgIE9WMU4">youtu.be/3jGgIE9WMU4</a>
+      </div>
+      <p class="psum">동방 세계관 위에 <b>아머드코어식 고속 기동 전투</b>를 얹은 3D 액션.
+        요괴의 산 일대를 절차적으로 생성한 오픈월드를 날아다니며 보스와 듀얼합니다.</p>
+      <ul class="pts">
+        <li>270m 절벽에 바위 조각을 흩뿌리니 벽에 묘비가 박힌 꼴이 돼, 장식을 얹는 대신 <b>지형 자체를 깎기로</b> 했습니다. 지면의 부호거리장에 슬래브 보로노이와 단차 · 균열을 새기고 서피스넷으로 메시화해 <b>2.01km² · 180타일의 절벽 표면</b>을 만듭니다.</li>
+        <li>LOD 3단계를 Blender 파이썬으로 구우면서 <b>타일 경계를 모든 LOD에서 같은 폴리라인으로 고정</b>해, 인접 타일의 LOD가 달라도 틈이 벌어지지 않습니다 (182/182 타일 일치).</li>
+        <li><b>자동 도달성 검증</b>으로 8m 격자에 등반 · 활공 · 상승기류를 전파시켜 44/44 지점 도달과 육지 100% 커버를 매 빌드 확인합니다.</li>
+      </ul>
+      <p class="stack">Unity 6 · URP · 부호거리장 / 서피스넷 · Blender 파이썬 툴체인 · LOD 체인 · 절차적 월드</p>
+    </div>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>ProjectCB</h3><span class="genre">대규모 전장 액션 · Mount &amp; Blade 계열</span>
+        <span class="badge">개발 중</span>
+      </div>
+      <p class="psum"><b>1,000 대 1,000</b> 규모의 야전과 공성에서, 한 명의 영웅으로 직접 싸우면서
+        동시에 아군 부대를 지휘하는 게임.</p>
+      <ul class="pts">
+        <li>적 사령관 AI는 "잘 싸우는지"를 눈으로 판단할 수 없어, 판단을 <b>전장 평가 → 자세와 주공 축 → 역할과 패턴</b>으로 쪼개고 <b>8축 검증 하네스</b>를 따로 만들었습니다. 조합 매트릭스와 성격 리그를 배치 실행으로 돌려 난이도별 패턴과 평가 오차를 수치로 비교합니다.</li>
+        <li>전투 시간을 첫 사상자부터 결판까지로 재어 200 대 200에서 <b>5~8분</b>이 나오도록 맞췄습니다.</li>
+        <li>근접 · 원거리 · 기마 전투와 사기 · 궤주 · 재집결, 지휘 공백과 승계가 한 전장에서 맞물립니다. 어셈블리를 <code>Core / Data / Framework / Gameplay / UI / DevHarness</code>로 갈랐습니다.</li>
+      </ul>
+      <p class="stack">Unity · 어셈블리 분리 · 사령관 AI · 사기 · 궤주 · 검증 하네스 · EditMode 테스트</p>
+    </div>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>SFPS</h3><span class="genre">부머 슈터 · 자체 엔진</span>
+        <span class="badge">엔진 직접 구현</span>
+        <a class="repo" href="https://github.com/toflaks98229/SFPS">github.com/toflaks98229/SFPS</a>
+      </div>
+      <p class="psum"><b>1.44MB 플로피 한 장에 들어가는 3D FPS.</b> 단일 <code>.exe</code>이고 에셋 파일이 하나도 없습니다.
+        상용 엔진 없이 Win32와 OpenGL 3.3 코어만으로 <b>엔진부터 C로 직접 작성</b>했습니다.</p>
+      <ul class="pts">
+        <li>1,474,560바이트 예산의 답을 압축이 아니라 <b>에셋을 파일이 아니라 정수 텍스트 레시피로 두는 것</b>에서 찾았습니다. 텍스처 · 모델 · 스프라이트 · 사운드가 전부 실행 시점에 생성됩니다.</li>
+        <li>모델은 <b>2D 외곽선과 두께</b>만 주면 엔진이 돌출시키고 귀 자르기로 삼각분할하며, UV가 그 과정에서 저절로 나와 <b>언랩할 것이 없습니다</b>.</li>
+        <li>현재 <b>411,648 / 1,474,560 바이트</b> — 예산의 27.9% 사용.</li>
+      </ul>
+      <p class="stack">C · Win32 API · OpenGL 3.3 Core · GLSL · 절차적 생성 · 핫 리로드</p>
+    </div>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>SRPG</h3><span class="genre">실시간 전술 · Bad North 계열</span>
+        <a class="repo" href="https://github.com/toflaks98229/SRPG">github.com/toflaks98229/SRPG</a>
+      </div>
+      <p class="psum">계단식 대지와 초크포인트로 이루어진 섬에 상륙하는 적을 부대로 막아내는 실시간 전술 게임.
+        지형이 절차적으로 생성되고, 부대는 전투를 치를수록 성장합니다.</p>
+      <ul class="pts">
+        <li>전투 로직이 <code>MonoBehaviour</code>와 씬에 얽히면 규칙 하나를 검증할 때마다 게임을 켜야 합니다. 전투를 <b>주문서를 받아 보고서를 내놓는 계약</b>으로 정의하고, 판단 로직을 유니티에 의존하지 않는 <b>순수 계층</b>으로 내렸습니다.</li>
+        <li>어셈블리를 <code>Core / Data / Systems / Gameplay / UI / Composition</code>으로 갈라 <b>의존 방향을 컴파일러가 강제</b>하게 하고, VContainer로 전역 · 캠페인 · 전투 세 수명을 분리했습니다.</li>
+        <li>덕분에 전투 규칙을 <b>EditMode 테스트로 씬 없이</b> 돌립니다.</li>
+      </ul>
+      <p class="stack">Unity 6 · URP · VContainer (DI) · 어셈블리 분리 · 영향력 맵 · NavMesh · EditMode / PlayMode 테스트</p>
+    </div>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>RTXX</h3><span class="genre">실시간 전략 · Total War 계열</span>
+        <a class="repo" href="https://github.com/toflaks98229/RTXX">github.com/toflaks98229/RTXX</a>
+      </div>
+      <p class="psum">부대 단위로 조작하는 RTS. 우클릭으로 <b>선을 그어 부대의 정면과 폭</b>을 지정하면 병사들이 해당 대형으로 정렬합니다.
+        2D 픽셀 스프라이트 병사가 3D 지형 위에서 전투합니다.</p>
+      <ul class="pts">
+        <li>병사 200명을 대형 슬롯 200개에 배정할 때 가까운 슬롯부터 채우면 이동 경로가 교차해 대형이 엉킵니다. 이를 <b>이분 그래프 최적 할당</b>으로 정의하고 <b>헝가리안 알고리즘을 직접 구현</b>해 총 이동거리가 최소인 배치를 계산했습니다.</li>
+        <li>같은 알고리즘을 <b>부대 ↔ 진형 선분 배정</b>에도 재사용했습니다.</li>
+        <li>피격 각도에 따라 방어력과 방패 효율이 달라져, 미리 짜둔 연출 없이도 <b>측면 기동이 전술적 의미</b>를 갖습니다.</li>
+      </ul>
+      <p class="stack">Unity 2022.3 · URP · DOTS / Burst · Job System · 헝가리안 알고리즘</p>
+    </div>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>ASCIIROG</h3><span class="genre">ASCII 로그라이크</span>
+        <a class="repo" href="https://github.com/toflaks98229/ASCIIROG">github.com/toflaks98229/ASCIIROG</a>
+      </div>
+      <p class="psum"><code>@</code>, <code>#</code>, <code>.</code> 문자로 그려지는 턴제 로그라이크.
+        고전 로그라이크 규칙 위에 <b>물리 · 열역학 시뮬레이션 레이어</b>를 얹었습니다.</p>
+      <ul class="pts">
+        <li>환경 상호작용을 정해진 연출로 재생하지 않습니다. 대신 <b>모든 타일에 물질 · 상태 · 온도를 부여</b>해 규칙끼리 부딪히게 했습니다.</li>
+        <li>불은 가연성 타일을 따라 번지고 기름에 옮겨붙으면 폭발하며, 물은 얼거나 끓어 증기가 됩니다. 번개는 <b>BFS로 전도성 · 젖은 타일을 타고 전파</b>됩니다.</li>
+        <li>미리 설계하지 않은 조합까지 저절로 성립하는 <b>창발형 플레이</b>가 나옵니다.</li>
+      </ul>
+      <p class="stack">Unity 2022.3 · TextMeshPro · Strategy 패턴 · BFS 전파 · 셀룰러 오토마타</p>
+    </div>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>MX4</h3><span class="genre">청소 시뮬레이터</span>
+        <span class="badge">Logitech 공식 협업</span>
+        <a class="repo" href="https://github.com/toflaks98229/MX4-core">github.com/toflaks98229/MX4-core</a>
+      </div>
+      <p class="psum">마우스를 드래그해 3D 오브젝트 표면의 얼룩을 물로 닦아내는 게임.
+        Logitech <b>Action Ring</b>으로 도구를 전환하고 <b>MX Master 4 햅틱</b>으로 피드백을 전달합니다.</p>
+      <ul class="pts">
+        <li>얼룩을 텍스처가 아니라 <b>UV 공간의 RenderTexture 마스크</b>로 두고 HLSL 브러시 셰이더가 직접 그려 넣습니다.</li>
+        <li>제거 진행도는 마스크를 CPU로 읽는 대신 <b>밉맵을 생성해 최하위 1×1 밉이 전체 평균이 되는 성질</b>로 구했습니다.</li>
+        <li>데스크톱에서는 <code>AsyncGPUReadback</code>으로 비동기 처리하고, 이를 지원하지 않는 <b>WebGL에는 셰이더로 1×1까지 blit한 뒤 동기 리드백하는 폴백 경로</b>를 뒀습니다.</li>
+      </ul>
+      <p class="stack">Unity 6 · HLSL · RenderTexture · AsyncGPUReadback · WebGL · .NET 8</p>
+    </div>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>SCPPJ</h3><span class="genre">액션 어드벤처</span>
+        <span class="badge">팀 프로젝트 · 단독 프로그래머</span>
+        <a class="repo" href="https://github.com/Proj-DreamCatcher/SCPPJ">github.com/Proj-DreamCatcher/SCPPJ</a>
+      </div>
+      <p class="psum">전투 · 잠입 · <b>단서 추론</b>을 결합한 3D 액션 어드벤처. 팀 프로젝트지만
+        약 <b>338개 스크립트를 유일한 프로그래머로서 전량 직접 작성</b>했습니다.</p>
+      <ul class="pts">
+        <li>기능이 늘수록 시스템 간 결합이 빠르게 증가했습니다. <b>VContainer DI</b>로 스코프(Root / Gameplay / Player / Combat / UI / Puzzle)를 분리해 조립했습니다.</li>
+        <li>시스템 간에는 직접 참조 대신 <b>struct 이벤트 버스</b>로 통신하고, 갱신은 개별 <code>Update()</code> 대신 <b>중앙 틱 매니저</b>가 <code>ITickable</code>을 호출합니다.</li>
+        <li>몬스터 스탯 · 카드 효과 · 대사를 <b>CSV로 분리</b>해, 기획자가 코드 없이 스프레드시트만으로 밸런스를 반복할 수 있는 데이터 파이프라인을 만들었습니다.</li>
+      </ul>
+      <p class="stack">Unity 6 · VContainer (DI) · 이벤트 버스 · Addressables · MVVM · FSM</p>
+    </div>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>CarDrive</h3><span class="genre">운전 서바이벌 호러</span>
+        <a class="repo" href="https://github.com/toflaks98229/CarDrive">github.com/toflaks98229/CarDrive</a>
+      </div>
+      <ul class="pts">
+        <li>운전이 헐거우면 전투와 병행할 이유가 사라집니다. 차량을 <b>WheelCollider 기반 물리</b>로 구현하고 <b>토크 곡선 · 기어비 · 연료 소모</b>는 <code>CarData</code>로 분리했습니다.</li>
+        <li>자동 변속과 시동(E키)까지 넣어 실제 자동차의 운전 감각을 살렸고, 귀신은 <b>시동이 걸려 있을 때만</b> 나타납니다.</li>
+      </ul>
+      <p class="stack">Unity 2022.3 · WheelCollider · URP Renderer Feature · ScriptableObject</p>
+    </div>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>Sandland</h3><span class="genre">드론 지휘</span>
+        <a class="repo" href="https://github.com/toflaks98229/Sandland">github.com/toflaks98229/Sandland</a>
+      </div>
+      <ul class="pts">
+        <li>1인칭으로 관제실을 이동하다 CRT 모니터 앞에 서면 제어 모드로 전환되고, <b>모니터 화면을 통해</b> 정찰 드론 편대를 지휘합니다. 화면은 RenderTexture에 픽셀화 · CRT 셰이더를 적용해 출력합니다.</li>
+        <li>드론 ↔ 대형 슬롯(Line / Circle / V / Diamond) 배정에 <b>RTXX의 헝가리안 알고리즘을 그대로 재사용</b>했고, 카메라 · 수송 · 공격 · 호위 · 방어 드론이 역할별 상태 머신으로 동작합니다.</li>
+      </ul>
+      <p class="stack">Unity 2022.3 · NavMesh · 헝가리안 알고리즘 · FSM · RenderTexture</p>
+    </div>
+
+    <div class="proj">
+      <div class="ptop">
+        <h3>0MOJEON</h3><span class="genre">부머 슈터</span>
+        <a class="repo" href="https://github.com/toflaks98229/0MOJEON">github.com/toflaks98229/0MOJEON</a>
+      </div>
+      <ul class="pts">
+        <li>부머 슈터의 재미는 총이 아니라 <b>이동</b>에서 나옵니다. Rigidbody 가속 / 마찰 기반 이동에 <b>공중 대시 · 벽 슬라이딩 · 계단 자동 오르기</b>를 더해 속도가 끊기지 않게 했습니다.</li>
+        <li><b>픽셀화 · 색상 팔레트 양자화</b> 렌더러 피처로 90년대 FPS의 화면을 재현했습니다.</li>
+      </ul>
+      <p class="stack">Unity 2022.3 · URP Renderer Feature · ScriptableObject · NavMesh</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Collaboration</h2>
+    <div class="proj">
+      <div class="ptop">
+        <h3>Logitech</h3><span class="genre">하드웨어 연동 · 2026.07</span>
+        <span class="badge">공식 협업</span>
+        <a class="repo" href="https://github.com/toflaks98229/LogiForUnity">github.com/toflaks98229/LogiForUnity</a>
+      </div>
+      <p class="psum">Logitech과 공식 협업으로 <b>MX Master 4 · Action Ring 연동</b> 작업을 진행했습니다.
+        게임 쪽(<b>MX4</b>)과 개발 도구 쪽(<b>LogiForUnity</b>), 두 갈래의 결과물이 나왔습니다.</p>
+      <ul class="pts">
+        <li>Logitech 플러그인은 Logi Plugin Service가 <b>.NET 8</b>로 로드하고, Unity는 Mono / IL2CPP 런타임입니다. 두 런타임을 한 프로세스에 억지로 합치는 대신 <b>프로세스를 나누고 loopback TCP로 연결</b>했습니다.</li>
+        <li>느슨한 결합이라 플러그인이 죽어도 게임 본체는 그대로 돌고, 반대로 플러그인은 <b>Unity 버전에 묶이지 않습니다</b>.</li>
+      </ul>
+      <p class="stack">.NET 8 · Logi Plugin Service · Loupedeck SDK · UPM 패키지 · TCP IPC · Unity Editor API</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Education &amp; Activities</h2>
+    <div class="edu">
+      <div class="when">2021 — 2022</div>
+      <div>
+        <h4>서울게임아카데미 · 게임엔진 응용 프로그래머 양성과정 이수</h4>
+        <p>C++ · C# 프로그래밍과 Unity, Unreal Engine 등 상용 엔진 기술을 다뤘습니다.</p>
+      </div>
+    </div>
+    <div class="edu">
+      <div class="when">2023 — 현재</div>
+      <div>
+        <h4>인하대학교 게임 개발 동아리</h4>
+        <p>기획 방법론, 게임 내 음향 활용, 아트 사용법 등 프로그래밍 바깥의 구성 요소를 직접 경험하며 유관 부서와 소통하는 감각을 길렀습니다.</p>
+      </div>
+    </div>
+    <div class="edu">
+      <div class="when">2025.01</div>
+      <div>
+        <h4>인디게임 예비창업 지원사업 · 개인 지원 <span class="sub">(한국콘텐츠진흥원)</span></h4>
+        <p>기획부터 구현, 에셋 활용, 사운드까지 1인 개발의 전 과정을 직접 진행했습니다.
+           다수의 개체가 대형을 이루고 유지하는 시스템이 가장 큰 과제였고, 이때의 고민이 이후 RTXX와 Sandland의 헝가리안 알고리즘 기반 대형 배정으로 이어졌습니다.</p>
+      </div>
+    </div>
+    <div class="edu">
+      <div class="when">2026</div>
+      <div>
+        <h4>메이플스토리 월드 해커톤 · 팀 메차수열 프로그래머</h4>
+        <p>2D 익스트랙션 게임 〈더 시드〉를 팀으로 개발했습니다.</p>
+        <ul>
+          <li><b>형상 관리로 결과물을 지킴</b> — 대규모 자동 수정으로 다수 파일이 손상됐을 때, Git의 과거 커밋과 다른 PC에 남아 있던 수정 전 파일을 대조 · 머지해 이전 상태를 복원했습니다.</li>
+          <li><b>컴포넌트 누락 커밋 대응</b> — 지속형 오브젝트를 커밋하면 컴포넌트가 빠지는 현상을 파악하고, 문제되는 코드만 골라 부분 커밋하는 방식으로 손상을 막았습니다.</li>
+          <li><b>범위 판단</b> — 팀이 처음 잡은 레퍼런스가 해커톤 기간에 비해 무겁다고 보고 〈리스크 오브 레인〉으로 전환을 제안했습니다. 익스트랙션 특유의 재미는 살리면서 구현 부담은 낮추는 절충안이었고, 제안이 받아들여져 기간 안에 완성했습니다.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>More Projects</h2>
+    <p class="more">
+      <b>WebRTS · 용병단</b> — Battle Brothers 계열 웹 게임. 캠페인 지도와 헥스 전술 전투, 전투가 끝나도 남는 부상. 빌드 도구 없이 순수 ES 모듈 + Canvas 2D. ·
+      <b>nethack-realtime</b> — NetHack 5.0을 실시간으로 개조한 포크. 턴이 아니라 벽시계로 세계가 흘러, 키를 누르지 않아도 몬스터가 다가옵니다 (C). ·
+      <b>unity-csv-pipeline</b> — CSV를 저장하면 ScriptableObject 에셋으로 굽는 에디터 전용 UPM 패키지. 구글 시트 동기화, 참조가 남은 에셋은 지우지 않는 안전장치. ·
+      <b>ASCII</b> — 섀도캐스팅 FOV, AP 턴 시스템, 고도 → 기후 → 바이옴 → 하천 침식 → 도로로 이어지는 절차적 월드 생성기. ·
+      <b>JPNGame</b> — 일본어 조사(は/が/を) 학습 게임. CSV → ScriptableObject 파이프라인. ·
+      <b>runMiyabirun</b> — 3D 엔드리스 러너. 무한 타일 생성, 지형 상호작용 인터페이스. ·
+      <b>magic-shooter</b> — 자바스크립트 슈팅 게임. 스프라이트 시트 에디터를 직접 구현해 포함.
+    </p>
+  </section>
+
+  <div class="foot">
+    <span>공개된 프로젝트의 소스는 <a href="https://github.com/toflaks98229">github.com/toflaks98229</a>에 있습니다. 비공개 저장소는 요청 시 공유드립니다.</span>
+    <span>정재헌 · 010-2333-9248 · jeje092389@naver.com</span>
+  </div>
+
+</div>
+</body>
+</html>

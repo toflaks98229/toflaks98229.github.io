@@ -156,6 +156,7 @@
     <div class="links">
       <a class="btn primary" href="https://github.com/toflaks98229">GitHub</a>
       <a class="btn" href="#projects">프로젝트 보기</a>
+      <a class="btn" href="resume.html">이력서</a>
       <a class="btn" href="https://www.youtube.com/@VIDEOFOR-j3p">YouTube · 플레이 영상</a>
       <a class="btn" href="https://www.youtube.com/@%EC%83%88%EB%A6%AC%EB%A7%8C">YouTube · 새리만</a>
       <a class="btn" href="https://www.game-ping.kr/users/%EA%B9%8C%EC%8B%9C%EB%84%88%EB%AC%B4%EC%A2%8B%EC%95%84%EA%B9%8C%EC%8B%9C">Game-Ping</a>
@@ -171,6 +172,76 @@
       프로젝트마다 마주한 핵심 문제와 그 해결 과정을 정리했습니다.
       썸네일을 누르면 플레이 영상이 재생됩니다. 소스는 대부분 공개돼 있습니다.
     </p>
+
+    <!-- THACPJ -->
+    <article class="project">
+      <div class="shot" data-yt="3jGgIE9WMU4" data-title="THACPJ 플레이 영상"></div>
+      <div class="body">
+        <div class="title-row">
+          <h3>THACPJ</h3>
+          <span class="genre">고속 메카 액션 · 오픈월드</span>
+          <span class="badge">개발 중 · 비공개</span>
+        </div>
+        <p class="summary">
+          동방 세계관 위에 <b>아머드코어식 고속 기동 전투</b>를 얹은 3D 액션.
+          요괴의 산 일대를 절차적으로 생성한 오픈월드를 날아다니며 보스와 듀얼합니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            270m 절벽에 바위 조각을 흩뿌려 놓으니 벽에 묘비가 박힌 꼴이 됐습니다. 그래서 장식을 얹는 대신
+            <b>지형 자체를 깎기로</b> 했습니다. 지면의 부호거리장에 슬래브 보로노이와 단차·균열을 새기고
+            서피스넷으로 메시화해 <b>2.01km² · 180타일의 절벽 표면</b>을 만듭니다. LOD 3단계를 각각
+            Blender 파이썬으로 구우면서 <b>타일 경계를 모든 LOD에서 같은 폴리라인으로 고정</b>했기 때문에,
+            인접 타일의 LOD가 달라도 틈이 벌어지지 않습니다(182/182 타일 일치).
+          </p>
+        </div>
+
+        <div class="tags">
+          <span class="tag">Unity 6</span><span class="tag">URP</span>
+          <span class="tag">부호거리장 / 서피스넷</span><span class="tag">Blender 파이썬 툴체인</span>
+          <span class="tag">LOD 체인</span><span class="tag">절차적 월드</span>
+          <span class="tag">자동 도달성 검증</span>
+        </div>
+        <div class="cta">
+          <a class="btn" href="https://youtu.be/3jGgIE9WMU4">유튜브에서 보기</a>
+        </div>
+      </div>
+    </article>
+
+    <!-- ProjectCB -->
+    <article class="project">
+      <div class="body">
+        <div class="title-row">
+          <h3>ProjectCB</h3>
+          <span class="genre">대규모 전장 액션 · Mount &amp; Blade 계열</span>
+          <span class="badge">개발 중 · 비공개</span>
+        </div>
+        <p class="summary">
+          <b>1,000 대 1,000</b> 규모의 야전과 공성에서, 한 명의 영웅으로 직접 싸우면서
+          동시에 아군 부대를 지휘하는 게임. 근접·원거리·기마 전투와 진형 명령이 한 화면에서 맞물립니다.
+        </p>
+
+        <div class="highlight">
+          <span class="label">핵심 문제</span>
+          <p>
+            적 사령관 AI는 "잘 싸우는지"를 눈으로 판단할 수 없습니다. 그래서 판단을
+            <b>전장 평가 → 자세와 주공 축 → 역할과 패턴</b>의 단계로 쪼개고,
+            <b>8축 검증 하네스</b>를 따로 만들었습니다. 조합 매트릭스와 성격 리그를 배치 실행으로 돌려
+            난이도별 패턴과 평가 오차를 수치로 비교합니다. 전투 시간은 첫 사상자부터 결판까지로 재어,
+            200 대 200에서 5~8분이 나오도록 맞췄습니다.
+          </p>
+        </div>
+
+        <div class="tags">
+          <span class="tag">Unity</span><span class="tag">어셈블리 분리</span>
+          <span class="tag">사령관 AI</span><span class="tag">사기 · 궤주</span>
+          <span class="tag">검증 하네스</span><span class="tag">기마 전투</span>
+          <span class="tag">EditMode 테스트</span>
+        </div>
+      </div>
+    </article>
 
     <!-- SFPS -->
     <article class="project">
@@ -565,6 +636,10 @@
     <h2>More Projects</h2>
     <p class="section-lede">그 외 개인 프로젝트입니다.</p>
     <div class="misc">
+      <a href="https://github.com/toflaks98229/WebRTS">
+        <b>WebRTS · 용병단</b>
+        <span>Battle Brothers 계열 웹 게임. 캠페인 지도와 헥스 전술 전투, 전투가 끝나도 남는 부상. 빌드 도구 없이 순수 ES 모듈 + Canvas 2D, DCSS CC0 타일에 출처 표기를 자동 생성합니다.</span>
+      </a>
       <a href="https://github.com/toflaks98229/nethack-realtime">
         <b>nethack-realtime</b>
         <span>NetHack 5.0을 실시간으로 개조한 포크. 턴이 아니라 벽시계로 세계가 흘러, 키를 누르지 않아도 몬스터가 다가옵니다. C.</span>
@@ -653,7 +728,8 @@
           <span class="tag">섀도캐스팅 FOV</span><span class="tag">BFS 전파</span>
           <span class="tag">유량 누적 하천 침식</span><span class="tag">귀 자르기 삼각분할</span>
           <span class="tag">값 노이즈 / fbm</span><span class="tag">오더드 디더링</span>
-          <span class="tag">브레젠험 직선</span>
+          <span class="tag">브레젠험 직선</span><span class="tag">부호거리장 / 서피스넷</span>
+          <span class="tag">보로노이 분할</span>
         </div>
       </div>
       <div>
@@ -663,6 +739,7 @@
           <span class="tag">커스텀 에디터 툴</span><span class="tag">Addressables</span>
           <span class="tag">UPM 패키지</span><span class="tag">핫 리로드</span>
           <span class="tag">TrenchBroom</span><span class="tag">EditMode / PlayMode 테스트</span>
+          <span class="tag">Blender 파이썬 툴체인</span><span class="tag">검증 하네스</span>
           <span class="tag">Git</span>
         </div>
       </div>
